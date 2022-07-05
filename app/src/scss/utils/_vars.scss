@@ -1,34 +1,39 @@
-$color1: #030303;
-$color2: #ffffff;
-$color3: #e5e5e5;
-$color4: #710707;
-$color5: #9d8665;
-$color6: #caaa7d;
-$color7: #24809e;
+$color1: #232323;
+$color2: #e0e0e0;
+$color3: #07becb;
+$color4: #eefafc;
+$color5: #09bdca;
+$color6: #ffffff;
+$color7: #000000;
+$color8: #dcdcdd;
+$color9: #ededed;
+$color10: #46a1d1;
+$color11: #999999;
+$color12: #1c3155;
+$color13: #222222;
+$color14: #aaaaaa;
+$color15: #1c3155;
+$color16: #2459b5;
+$color17: #219653;
+$color18: #03828b;
+$color19: #0abecb;
+$color20: #333333;
+$color21: #828282;
 
-$font-family: 'Roboto', 'Verdana', sans-serif;
-
-$font-size-h1: 5.6rem;
-$font-size-h2: 4.6rem;
-$font-size-h3: 2.8rem;
-$font-size-h4: 2rem;
-$font-size-h5: 1.8rem;
-
-$font-size-x: 1.8rem;
-$font-size-m: 1.6rem;
-$font-size-s: 1.4rem;
-$font-size-xs: 1.2rem;
-$font-size-ms: 1rem;
-$font-size-ss: 0.8rem;
-
-$font-weight-8: 800;
-$font-weight-7: 700;
-$font-weight-6: 600;
-$font-weight-5: 500;
-$font-weight-4: 400;
-$font-weight-3: 300;
-$font-weight-2: 200;
-$font-weight-1: 200;
+$list-bg-color: $color6;
+$list-text-color: inherit; /* Use "inherit" to take on parent text color */
+$select-field-arrow-color: $color7; /* This is the select field arrow color */
+$border-color-active: $color6; /* Active State */
+$border-color-hover: $color6; /* Select Field could be the same as your form field border color */
+$list-item-bg-color: rgba(255, 255, 255, 0.2); /* Select Field Hover/Focus State */
+$select-field-padding-left: 12px; /* Match the padding values for your form fields */
+$select-field-padding-right: 12px; /* Match the padding values for your form fields */
+$list-padding-top-bottom: 10px; /* This is the top and bottom padding for the dropdown list */
+$list-max-height: 150px; /* You can set this to "Auto" as well */
+$list-item-padding-left: 18px;
+$list-item-padding-right: 18px;
+$list-item-min-height: 40px; /* This is the height of each list item in the dropdown */
+$list-item-line-height: 40px; /* This is the height of each list item in the dropdown */
 
 $desktop-x: 1920px;
 $desktop-m: 1440px;
