@@ -1,3 +1,5 @@
+import '../scss/styles.scss';
+
 // plugins
 import './plugins/remodal';
 

@@ -36,7 +36,7 @@
 	}
   </style>
 
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
 
 </head>
 <body>
@@ -142,42 +142,9 @@
 	  </div>
 	  <div class="navbar__progress-line"></div>
 	</div>
+
 	<div class="hero wf-section">
 	  <div class="cz hero__cz">
-		<div class="hero__info">
-		  <h1>
-			<span class="span span__blue">Your home<br/>advantage.</span>
-		  </h1>
-		  <div class="hero__features">
-			<div class="hero__feature">
-			  <div class="hero-feature__wrapper">
-				<img src="https://assets.website-files.com/629f58fef317062068fa4ccc/62c1d20b49a83b9e1afbda2a_Color.svg"
-					 loading="lazy"
-					 alt=""
-					 class="hero-feature__icon"/>
-			  </div>
-			  <div>National Presence</div>
-			</div>
-			<div class="hero__feature">
-			  <div class="hero-feature__wrapper">
-				<img src="https://assets.website-files.com/629f58fef317062068fa4ccc/62c1d20b49a83b9e1afbda2a_Color.svg"
-					 loading="lazy"
-					 alt=""
-					 class="hero-feature__icon"/>
-			  </div>
-			  <div>Local Expertise</div>
-			</div>
-			<div class="hero__feature">
-			  <div class="hero-feature__wrapper">
-				<img src="https://assets.website-files.com/629f58fef317062068fa4ccc/62c1d20b49a83b9e1afbda2a_Color.svg"
-					 loading="lazy"
-					 alt=""
-					 class="hero-feature__icon"/>
-			  </div>
-			  <div>Community Focused</div>
-			</div>
-		  </div>
-		</div>
 		<div class="hero__form-block w-form">
 		  <form id="wf-form-Landing-Page-Form"
 				name="wf-form-Landing-Page-Form"
@@ -242,6 +209,51 @@
 		  </div>
 		  <div class="w-form-fail">
 			<div>Oops! Something went wrong while submitting the form.</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+
+	<div class="hero wf-section">
+	  <div class="cz hero__cz">
+		<div class="hero__info">
+		  <h1>
+			<span class="span span__blue">Your home<br/>advantage.</span>
+		  </h1>
+		  <div class="hero__features">
+			<div class="hero__feature">
+			  <div class="hero-feature__wrapper">
+				<img src="https://assets.website-files.com/629f58fef317062068fa4ccc/62c1d20b49a83b9e1afbda2a_Color.svg"
+					 loading="lazy"
+					 alt=""
+					 class="hero-feature__icon"/>
+			  </div>
+			  <div>National Presence</div>
+			</div>
+			<div class="hero__feature">
+			  <div class="hero-feature__wrapper">
+				<img src="https://assets.website-files.com/629f58fef317062068fa4ccc/62c1d20b49a83b9e1afbda2a_Color.svg"
+					 loading="lazy"
+					 alt=""
+					 class="hero-feature__icon"/>
+			  </div>
+			  <div>Local Expertise</div>
+			</div>
+			<div class="hero__feature">
+			  <div class="hero-feature__wrapper">
+				<img src="https://assets.website-files.com/629f58fef317062068fa4ccc/62c1d20b49a83b9e1afbda2a_Color.svg"
+					 loading="lazy"
+					 alt=""
+					 class="hero-feature__icon"/>
+			  </div>
+			  <div>Community Focused</div>
+			</div>
+		  </div>
+		</div>
+		<div class="hero__form-block w-form">
+		  <div class="hero__form">
+			<div id="buyside-widget-container-home"></div>
 		  </div>
 		</div>
 	  </div>
@@ -1099,6 +1111,30 @@
 	document.getElementById('Buy-a-home').click();
   });
 </script>
+
+
+
+<script src="//api.buyermls.com/widget/buyside-widget-v31.js"></script>
+<script>
+  $(document).ready(function () {
+	buyside_widget({
+	  widgetSource: '',
+	  widgetContainerId: 'buyside-widget-container-home',
+	  inputPlaceHolder: 'Enter an address to get your market report',
+	  invalidMessage: 'Address not found',
+	  customSubmitBtn: '',
+	  submitBtnClass: '',
+	  submitSelector: '',
+	  submitBtnValue: 'Get Report',
+	  key: '1644440684524367',
+	  userName: 'askwhosales@phmloans.com',
+	  openNewWindow: true,
+	  customCssLink: ''
+	});
+  });
+</script>
+
+<br> <br>
 
 <script src="js/index.js"></script>
 </body>

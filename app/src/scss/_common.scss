@@ -1240,9 +1240,6 @@ a.w-webflow-badge {
   display: none !important;
 }
 
-/* MEMBERS */
-@import 'styles';
-
 @media (max-width: 479px) {
   [data-page='member'] .slider__arrow--prev {
     left: 30px;

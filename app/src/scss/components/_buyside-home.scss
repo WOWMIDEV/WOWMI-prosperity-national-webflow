@@ -1,0 +1,105 @@
+#buyside-widget-container-home {
+  width: 100%;
+  position: relative;
+
+  input.buyside_widget_input_class {
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+  }
+
+  input.buyside_widget_input_class {
+    height: 56px;
+    margin-bottom: 0px;
+    padding: 0px 0px 0px 24px;
+    border: 1px none #000;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  input.buyside_widget_input_class::placeholder {
+    color: #bdbdbd;
+  }
+
+  input.buyside_widget_input_class::-webkit-input-placeholder {
+    color: #bdbdbd;
+  }
+
+  input.buyside_widget_input_class:-ms-input-placeholder {
+    color: #bdbdbd;
+  }
+
+  input.buyside_widget_input_class::-ms-input-placeholder {
+    color: #bdbdbd;
+  }
+
+  button {
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    transform: translateY(-50%);
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 45px;
+    padding: 9px 30px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #07becb;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+  }
+
+  .buyside_widget_autocomplete-items {
+    top: 60px;
+    width: 99.2%;
+    border: 0 solid transparent;
+    box-shadow: 0 0 0 2px #07becb;
+  }
+
+  .buyside_widget_autocomplete-items::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  .buyside_widget_autocomplete-items::-webkit-scrollbar-track {
+    background: #ffffff;
+    width: 10px;
+    border-radius: 50px;
+  }
+
+  /* Handle */
+  .buyside_widget_autocomplete-items::-webkit-scrollbar-thumb {
+    background: #07becc;
+    border-radius: 50px;
+  }
+
+  /* Handle on hover */
+  .buyside_widget_autocomplete-items::-webkit-scrollbar-thumb:hover {
+    background: red;
+  }
+
+  .buyside_widget_autocomplete_item {
+    padding: 6px 10px;
+    color: #828282;
+    font-size: 16px;
+  }
+}
