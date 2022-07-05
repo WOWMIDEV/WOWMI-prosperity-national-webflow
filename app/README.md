@@ -14,7 +14,7 @@
 
 ### Links
 - Webpack watch options - https://webpack.js.org/configuration/watch
-- Wbpack wev server - https://webpack.js.org/configuration/dev-server
+- Webpack web server - https://webpack.js.org/configuration/dev-server
 
 ### Process 
 1. `make build`
