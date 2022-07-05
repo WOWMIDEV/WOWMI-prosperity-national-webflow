@@ -19,7 +19,9 @@
 ### Process 
 1. `make build`
 2. `make up`
-3. `~app make install`
-4. `~app make server`
-5. `~app make build-dev` no minify
-6. `~app make build-prod` minify
+3. `➜ app make install`
+4. `➜ app make server`
+5. `➜ app make build-dev` no minify
+6. `➜ app make build-prod` minify
+7. `➜ app make browser`
+
