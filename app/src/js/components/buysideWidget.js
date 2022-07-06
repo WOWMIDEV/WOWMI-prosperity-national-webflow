@@ -1,6 +1,15 @@
 const buysideWidget = () => {
-  if (window.innerWidth < 768) {
-    return false;
+  const DEFAULT_CONFIG = {
+    key: '1644440684524367',
+    userName: 'askwhosales@phmloans.com'
+  }
+  
+  const getValue = (key, el) => {
+    if (!el) {
+      return DEFAULT_CONFIG[key];
+    }
+    
+    return el.textContent.replace(' ', '');
   }
 
   const buysideWidgetWrapper = document.querySelector('[data-buyside="widget"]');
@@ -8,12 +17,10 @@ const buysideWidget = () => {
   const buysideWidgetKeyEl = document.querySelector('[data-buyside="key"]');
   const buysideWidgetUserNameEl = document.querySelector('[data-buyside="username"]');
 
-  if (!buysideWidgetWrapper || !buysideWidgetUserNameEl || !buysideWidgetKeyEl) {
+  if (!buysideWidgetWrapper) {
     return false;
   }
-
-  const buysideWidgetKey = buysideWidgetKeyEl.textContent;
-  const buysideWidgetUserName = buysideWidgetUserNameEl.textContent.replace(' ', '');
+  
   const buysideWidgetEl = document.createElement('div');
   const scriptApi = document.createElement('script');
   const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11" fill="none">
@@ -24,10 +31,11 @@ const buysideWidget = () => {
                   stroke-linejoin="round">
                   </path>
                 </svg>`;
+  
   const buysideConfig = {
     widgetContainerId: 'buyside-widget-container', // Required - ID of the <div> on your page to place the widget
-    key: buysideWidgetKey, // Required - the user key you obtained from Buyside
-    userName: buysideWidgetUserName, // Optional or label identifying an individual user (agent)
+    key: getValue('key', buysideWidgetKeyEl), // Required - the user key you obtained from Buyside
+    userName: getValue('userName', buysideWidgetUserNameEl), // Optional or label identifying an individual user (agent)
     inputClass: 'input report__search-input w-input',
     inputPlaceHolder: 'Enter an address to get your market report',
     submitBtnClass: 'button__wrapper',

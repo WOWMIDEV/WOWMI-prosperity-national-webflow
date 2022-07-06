@@ -145,78 +145,6 @@
 
 	<div class="hero wf-section">
 	  <div class="cz hero__cz">
-		<div class="hero__form-block w-form">
-		  <form id="wf-form-Landing-Page-Form"
-				name="wf-form-Landing-Page-Form"
-				data-name="Landing Page Form"
-				method="get"
-				class="hero__form">
-			<div class="hero-form__wrapper">
-			  <label for="name-2" class="hero__field-label">I want to</label>
-			  <div class="hero-form__rb-wrapper">
-				<label data-w-id="7d42ffd1-85b5-4481-cbef-55541f042c3d" class="hero__rb-field w-radio">
-				  <div class="w-form-formradioinput w-form-formradioinput--inputType-custom hero__rb w-radio-input w--redirected-checked"></div>
-				  <input type="radio"
-						 name="I-want"
-						 id="Buy-a-home"
-						 value="Buy a home"
-						 data-name="I want"
-						 checked=""
-						 style="opacity:0;position:absolute;z-index:-1"/>
-				  <span class="hero__rb-label w-form-label" for="Buy-a-home">Buy a home</span>
-				</label>
-				<label class="hero__rb-field w-radio">
-				  <div class="w-form-formradioinput w-form-formradioinput--inputType-custom hero__rb w-radio-input"></div>
-				  <input type="radio"
-						 name="I-want"
-						 id="Sell-a-home"
-						 value="Sell a home"
-						 data-name="I want"
-						 style="opacity:0;position:absolute;z-index:-1"/>
-				  <span class="hero__rb-label w-form-label" for="Sell-a-home">Sell a home</span>
-				</label>
-			  </div>
-			</div>
-			<div class="hero-form__wrapper hero-form-wrapper--zip">
-			  <label for="zip" class="hero__field-label">Adress</label>
-			  <input type="text"
-					 class="hero-form__text-label w-input"
-					 maxlength="256"
-					 name="Address"
-					 data-name="Address"
-					 placeholder="Enter an address to get your market report"
-					 id="Address-2"
-					 required=""/>
-			  <div class="btn hero-form__fake-submit">
-				<div>Get report</div>
-				<div class="btn-arrow svg-button-arrow">
-				  <div class="svg w-embed">
-					<svg width="100%" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-					  <path d="M1.00749 1.10278L5.52171 5.60353L1 10.1028"
-							stroke="currentColor"
-							stroke-width="1.49726"
-							stroke-linecap="round"
-							stroke-linejoin="round"/>
-					</svg>
-				  </div>
-				</div>
-				<input type="submit" value="Submit" data-wait="Please wait..." class="hero-form__submit w-button"/>
-			  </div>
-			</div>
-		  </form>
-		  <div class="w-form-done">
-			<div>Thank you! Your submission has been received!</div>
-		  </div>
-		  <div class="w-form-fail">
-			<div>Oops! Something went wrong while submitting the form.</div>
-		  </div>
-		</div>
-	  </div>
-	</div>
-
-
-	<div class="hero wf-section">
-	  <div class="cz hero__cz">
 		<div class="hero__info">
 		  <h1>
 			<span class="span span__blue">Your home<br/>advantage.</span>
@@ -251,9 +179,9 @@
 			</div>
 		  </div>
 		</div>
+		<!-- buyside -->
 		<div class="hero__form-block w-form">
-		  <div class="hero__form">
-			<div id="buyside-widget-container-home"></div>
+		  <div class="hero__form buyside-widget-wrapper report__search report__search-home" data-buyside="widget">
 		  </div>
 		</div>
 	  </div>
@@ -1111,30 +1039,6 @@
 	document.getElementById('Buy-a-home').click();
   });
 </script>
-
-
-
-<script src="//api.buyermls.com/widget/buyside-widget-v31.js"></script>
-<script>
-  $(document).ready(function () {
-	buyside_widget({
-	  widgetSource: '',
-	  widgetContainerId: 'buyside-widget-container-home',
-	  inputPlaceHolder: 'Enter an address to get your market report',
-	  invalidMessage: 'Address not found',
-	  customSubmitBtn: '',
-	  submitBtnClass: '',
-	  submitSelector: '',
-	  submitBtnValue: 'Get Report',
-	  key: '1644440684524367',
-	  userName: 'askwhosales@phmloans.com',
-	  openNewWindow: true,
-	  customCssLink: ''
-	});
-  });
-</script>
-
-<br> <br>
 
 <script src="js/index.js"></script>
 </body>
