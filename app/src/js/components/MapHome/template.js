@@ -3,11 +3,9 @@ export const template = (params) => {
   return `<div class="map__container">
         <a href="#" class="box-name">
             <div class="box-name__text">STATE</div>
-            <img class="box-name__image" src="svg/Polygon.svg" alt="img">
         </a>
         <a href="#" class="box-name--circle">
             <div class="box-name__text--circle"></div>
-            <img class="box-name__image" src="svg/Polygon.svg" alt="img">
         </a>
         <svg class="map" width="925" height="582" viewBox="0 0 925 582" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0)">
