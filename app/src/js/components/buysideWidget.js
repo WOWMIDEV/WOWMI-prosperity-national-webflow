@@ -1,16 +1,16 @@
 const buysideWidget = () => {
   const DEFAULT_CONFIG = {
     key: '1644440684524367',
-    userName: 'askwhosales@phmloans.com'
-  }
-  
+    userName: 'askwhosales@phmloans.com',
+  };
+
   const getValue = (key, el) => {
     if (!el) {
       return DEFAULT_CONFIG[key];
     }
-    
+
     return el.textContent.replace(' ', '');
-  }
+  };
 
   const buysideWidgetWrapper = document.querySelector('[data-buyside="widget"]');
   const buysideWidgetLoadProcess = document.querySelector('[data-buyside="load"]');
@@ -20,7 +20,7 @@ const buysideWidget = () => {
   if (!buysideWidgetWrapper) {
     return false;
   }
-  
+
   const buysideWidgetEl = document.createElement('div');
   const scriptApi = document.createElement('script');
   const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11" fill="none">
@@ -31,7 +31,7 @@ const buysideWidget = () => {
                   stroke-linejoin="round">
                   </path>
                 </svg>`;
-  
+
   const buysideConfig = {
     widgetContainerId: 'buyside-widget-container', // Required - ID of the <div> on your page to place the widget
     key: getValue('key', buysideWidgetKeyEl), // Required - the user key you obtained from Buyside
