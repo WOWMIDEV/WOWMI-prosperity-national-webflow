@@ -52,16 +52,15 @@ export const htmlTemplateReview = (review) => {
               <div class="reviews__footer">
 
                 <!-- total reviews -->
-<!--                <a href="#" class="reviews__link"></a>-->
                 <small>${agentEmail}</small>
 
                 <!-- link all reviews -->
                 <a href="${link}" target="_blank">
-                <img
-                  src="${experienceLogo}"
-                  loading="lazy"
-                  alt="experience"
-                  width="64px"/>
+                  <img
+                    src="${experienceLogo}"
+                    loading="lazy"
+                    alt="experience"
+                    width="64px"/>
                 </a>
               </div>
           </div>`;
