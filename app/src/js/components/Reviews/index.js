@@ -3,11 +3,13 @@ import { getContentElement } from './utils';
 import { renderReviews } from './render';
 import { fetchAll } from './api';
 import { buildUrl } from './buildUrl';
+import { htmlTemplateNav } from './htmlTemplateNav';
 
 const initReviews = () => {
   const elements = {
     sectionReviews: document.querySelector('[data-reviews="section"]'),
     wrapperReviews: document.querySelector('[data-reviews="wrapper"]'),
+    wrapperNav: document.querySelector('[data-reviews="nav"]'),
     links: {
       experience: document.querySelector('[data-reviews="experience-link"]'),
     },
@@ -24,7 +26,7 @@ const initReviews = () => {
     },
   };
 
-  const { sectionReviews } = elements;
+  const { sectionReviews, wrapperNav } = elements;
   if (!sectionReviews) {
     return false;
   }
@@ -79,6 +81,7 @@ const initReviews = () => {
         return false;
       }
 
+      wrapperNav.insertAdjacentHTML('afterbegin', htmlTemplateNav());
       renderReviews(elements, reviews);
 
       return true;

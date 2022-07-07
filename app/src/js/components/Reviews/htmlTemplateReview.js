@@ -42,22 +42,22 @@ export const htmlTemplateReview = (review) => {
                       <div class="reviews__date">${getDate(date)}</div>
                   </div>
               </div>
-              
+
               <!-- content -->
               <div class="reviews__content">
                 <p class="reviews__text">${formatContent(content)}</p>
               </div>
-              
+
               <div class="reviews__footer">
-              
+
                 <!-- total reviews -->
 <!--                <a href="#" class="reviews__link"></a>-->
                 <small>${agentEmail}</small>
-                
+
                 <!-- link all reviews -->
                 <a href="${link}" target="_blank">
                 <img
-                  src="https://uploads-ssl.webflow.com/6284bc411e7490c177b50355/6284bd2908478941563e0d18_min-logo.png"
+                  src="img/experience-logo.png"
                   loading="lazy"
                   alt="experience"
                   width="64px"/>

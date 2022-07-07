@@ -17,9 +17,9 @@
     & > div {
       display: flex;
       align-items: center;
-      padding-right: 5px;
+      padding-right: 7px;
       background: $color6;
-      border-radius: 8px;
+      border-radius: 6px;
 
       @include media-mobile-x {
         padding: 20px;
@@ -99,5 +99,13 @@
     font-size: 16px;
     line-height: 1.5;
     color: $color21;
+  }
+
+  .report__load {
+    padding: 20px;
+    background: $color6;
+    width: 94%;
+    border-radius: 6px;
+    text-align: center;
   }
 }
