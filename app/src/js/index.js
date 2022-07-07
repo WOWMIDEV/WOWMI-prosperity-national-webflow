@@ -10,9 +10,9 @@ import './components/faqDropdowns';
 import './components/overflowBodyForOpenMenu';
 
 // sliders
-import './components/quotesSlider';
+// import './components/quotesSlider';
 import './components/awardsSlider';
-import './components/membersSlider';
+// import './components/membersSlider';
 import './components/articlesSlider';
 
 // api
