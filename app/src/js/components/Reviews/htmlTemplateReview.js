@@ -1,4 +1,5 @@
 import { formatDate, getContentElement, rateCls, formatContent } from './utils';
+import experienceLogo from '../../../img/experience-logo.png';
 
 const getDate = (date) => {
   const formattedDate = formatDate(date);
@@ -57,7 +58,7 @@ export const htmlTemplateReview = (review) => {
                 <!-- link all reviews -->
                 <a href="${link}" target="_blank">
                 <img
-                  src="img/experience-logo.png"
+                  src="${experienceLogo}"
                   loading="lazy"
                   alt="experience"
                   width="64px"/>
