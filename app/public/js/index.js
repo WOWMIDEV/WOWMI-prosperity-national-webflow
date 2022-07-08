@@ -379,7 +379,7 @@ var htmlTemplateReview = function htmlTemplateReview(review) {
   var location = [city, state].join(', ');
   var extraDataContent = JSON.parse(extraData);
   var agentEmail = extraDataContent.serviceProviderInfo.agent_name;
-  return "<div class=\"reviews__slide swiper-slide\">\n              <div class=\"reviews__header\">\n                  <div class=\"reviews__user-info\">\n                      <div class=\"reviews__user-img\">\n                          <div class=\"reviews__-user-symbols\">".concat(abbr, "</div>\n                      </div>\n                      <div>\n                          <div class=\"reviews__name\">").concat(name, "</div>\n                          <div class=\"reviews__stars reviews__stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_0__.rateCls)(rating), "\"></div>\n                      </div>\n                  </div>\n                  <div>\n                      <div class=\"reviews__city\">").concat(location, "</div>\n                      <div class=\"reviews__date\">").concat(getDate(date), "</div>\n                  </div>\n              </div>\n\n              <!-- content -->\n              <div class=\"reviews__content\">\n                <p class=\"reviews__text\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_0__.formatContent)(content), "</p>\n              </div>\n\n              <div class=\"reviews__footer\">\n\n                <!-- total reviews -->\n<!--                <a href=\"#\" class=\"reviews__link\"></a>-->\n                <small>").concat(agentEmail, "</small>\n\n                <!-- link all reviews -->\n                <a href=\"").concat(link, "\" target=\"_blank\">\n                <img\n                  src=\"").concat(_img_experience_logo_png__WEBPACK_IMPORTED_MODULE_1__, "\"\n                  loading=\"lazy\"\n                  alt=\"experience\"\n                  width=\"64px\"/>\n                </a>\n              </div>\n          </div>");
+  return "<div class=\"reviews__slide swiper-slide\">\n              <div class=\"reviews__header\">\n                  <div class=\"reviews__user-info\">\n                      <div class=\"reviews__user-img\">\n                          <div class=\"reviews__-user-symbols\">".concat(abbr, "</div>\n                      </div>\n                      <div>\n                          <div class=\"reviews__name\">").concat(name, "</div>\n                          <div class=\"reviews__stars reviews__stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_0__.rateCls)(rating), "\"></div>\n                      </div>\n                  </div>\n                  <div>\n                      <div class=\"reviews__city\">").concat(location, "</div>\n                      <div class=\"reviews__date\">").concat(getDate(date), "</div>\n                  </div>\n              </div>\n\n              <!-- content -->\n              <div class=\"reviews__content\">\n                <p class=\"reviews__text\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_0__.formatContent)(content), "</p>\n              </div>\n\n              <div class=\"reviews__footer\">\n\n                <!-- total reviews -->\n                <small>").concat(agentEmail, "</small>\n\n                <!-- link all reviews -->\n                <a href=\"").concat(link, "\" target=\"_blank\">\n                  <img\n                    src=\"").concat(_img_experience_logo_png__WEBPACK_IMPORTED_MODULE_1__, "\"\n                    loading=\"lazy\"\n                    alt=\"experience\"\n                    width=\"64px\"/>\n                </a>\n              </div>\n          </div>");
 };
 
 /***/ }),
@@ -1167,6 +1167,77 @@ var faqDropdowns = new _plugins_Dropdowns__WEBPACK_IMPORTED_MODULE_0__["default"
   contentSelector: '.faq__content'
 });
 faqDropdowns.init();
+
+/***/ }),
+
+/***/ "./src/js/components/membersCards.js":
+/*!*******************************************!*\
+  !*** ./src/js/components/membersCards.js ***!
+  \*******************************************/
+/***/ (function() {
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var WIDTH_MAX = 320;
+
+var getIndents = function getIndents(width) {
+  switch (true) {
+    case width <= 375:
+      return 0.025;
+
+    case width >= 479:
+      return 0.045;
+
+    default:
+      return false;
+  }
+};
+
+var process = function process(membersWrapper, memberCardsEls, lastCard) {
+  var wrapper = membersWrapper;
+
+  _toConsumableArray(memberCardsEls).forEach(function (card, index) {
+    card.addEventListener('click', function () {
+      setTimeout(function () {
+        var _membersWrapper$getBo = membersWrapper.getBoundingClientRect(),
+            wrapperWidth = _membersWrapper$getBo.width;
+
+        var offsetLeft = card.offsetLeft;
+
+        if (memberCardsEls[index] === lastCard) {
+          wrapper.scrollLeft = membersWrapper.scrollLeft - wrapperWidth + WIDTH_MAX * 2;
+        } else {
+          wrapper.scrollLeft = offsetLeft - membersWrapper.scrollWidth * getIndents(window.innerWidth);
+        }
+      }, 300);
+    });
+  });
+};
+
+var init = function init() {
+  var membersWrapper = document.querySelector('[data-members-cards="list"]');
+  var memberCardsEls = document.querySelectorAll('[data-members-cards="item"]');
+
+  if (!membersWrapper || !memberCardsEls) {
+    return false;
+  }
+
+  var lastCard = memberCardsEls[memberCardsEls.length - 1];
+  process(membersWrapper, memberCardsEls, lastCard);
+  return true;
+};
+
+init();
 
 /***/ }),
 
@@ -26366,27 +26437,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _plugins_remodal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plugins/remodal */ "./src/js/plugins/remodal.js");
 /* harmony import */ var _components_MapHome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/MapHome */ "./src/js/components/MapHome/index.js");
 /* harmony import */ var _components_faqDropdowns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/faqDropdowns */ "./src/js/components/faqDropdowns.js");
-/* harmony import */ var _components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/overflowBodyForOpenMenu */ "./src/js/components/overflowBodyForOpenMenu.js");
-/* harmony import */ var _components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_awardsSlider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/awardsSlider */ "./src/js/components/awardsSlider.js");
-/* harmony import */ var _components_articlesSlider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/articlesSlider */ "./src/js/components/articlesSlider.js");
-/* harmony import */ var _components_Yelp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Yelp */ "./src/js/components/Yelp/index.js");
-/* harmony import */ var _components_adwerx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/adwerx */ "./src/js/components/adwerx.js");
-/* harmony import */ var _components_adwerx__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_components_adwerx__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _components_Reviews__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Reviews */ "./src/js/components/Reviews/index.js");
-/* harmony import */ var _components_buysideWidget__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/buysideWidget */ "./src/js/components/buysideWidget.js");
-/* harmony import */ var _components_buysideWidget__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_components_buysideWidget__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_membersCards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/membersCards */ "./src/js/components/membersCards.js");
+/* harmony import */ var _components_membersCards__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_membersCards__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/overflowBodyForOpenMenu */ "./src/js/components/overflowBodyForOpenMenu.js");
+/* harmony import */ var _components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_awardsSlider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/awardsSlider */ "./src/js/components/awardsSlider.js");
+/* harmony import */ var _components_articlesSlider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/articlesSlider */ "./src/js/components/articlesSlider.js");
+/* harmony import */ var _components_Yelp__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Yelp */ "./src/js/components/Yelp/index.js");
+/* harmony import */ var _components_adwerx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/adwerx */ "./src/js/components/adwerx.js");
+/* harmony import */ var _components_adwerx__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_components_adwerx__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _components_Reviews__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Reviews */ "./src/js/components/Reviews/index.js");
+/* harmony import */ var _components_buysideWidget__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/buysideWidget */ "./src/js/components/buysideWidget.js");
+/* harmony import */ var _components_buysideWidget__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_buysideWidget__WEBPACK_IMPORTED_MODULE_11__);
  // plugins
 
  // components
-// import './components/scrollUp';
+
 
 
 
  // sliders
-// import './components/quotesSlider';
 
- // import './components/membersSlider';
 
  // api
 

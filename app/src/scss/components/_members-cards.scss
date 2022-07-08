@@ -1,25 +1,60 @@
+.members-cards__inner {
+  display: flex;
+
+  @include media-mobile-x {
+    flex-direction: column;
+  }
+}
+
 .members-cards {
   padding: 100px 0;
 }
 
 .members-cards__list {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex: 1;
+  gap: 20px;
+  max-width: 980px;
+  margin: 0 auto;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  @include media-tablet-x {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  @include media-mobile-x {
+   justify-content: flex-start;
+  }
 }
 
 .member__card {
   width: 90px;
-  //width: 320px;
+  min-width: 90px;
   height: 500px;
-  padding: 20px;
   position: relative;
   background-color: #eef2f4;
   overflow: hidden;
   border-radius: 8px;
-  transition: width .3s ease-in-out, background-color .3s ease-in-out;
+  transition: width .3s ease-in-out,  min-width .3s ease-in-out, background-color .3s ease-in-out;
 
   &:hover {
     width: 320px;
+    min-width: 320px;
     background-color: #ffffff;
   }
 }
@@ -156,7 +191,7 @@
   height: 160px;
   padding-top: 40px;
   position: absolute;
-  bottom: -40%;
+  bottom: -50%;
   left: 50%;
   background-color: #07BECB;
   color: #ffffff;
@@ -173,13 +208,13 @@
 .member__card {
   &:hover {
     .member__card-link-page {
-      bottom: -15%;
+      bottom: -17%;
     }
   }
 }
 
 .member__card-link-page-name {
-  padding-right: 5px;
+  padding-right: 10px;
 }
 
 .member__card-link-page-arrow {
