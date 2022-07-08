@@ -419,7 +419,6 @@ var initReviews = function initReviews() {
     links: {
       experience: document.querySelector('[data-reviews="experience-link"]')
     },
-    experienceLink: document.querySelector('[data-reviews="experience-link"]'),
     company: document.querySelector('[data-reviews="company"]'),
     agent_email: document.querySelector('[data-reviews="agent_email"]'),
     email: document.querySelector('[data-reviews="email"]')
@@ -1090,7 +1089,8 @@ var buysideWidget = function buysideWidget() {
       return DEFAULT_CONFIG[key];
     }
 
-    return el.textContent.replace(' ', '');
+    var textContent = el.textContent;
+    return textContent === '' ? DEFAULT_CONFIG[key] : textContent.replace(' ', '');
   };
 
   var buysideWidgetWrapper = document.querySelector('[data-buyside="widget"]');

@@ -13,7 +13,6 @@ const initReviews = () => {
     links: {
       experience: document.querySelector('[data-reviews="experience-link"]'),
     },
-    experienceLink: document.querySelector('[data-reviews="experience-link"]'),
     company: document.querySelector('[data-reviews="company"]'),
     agent_email: document.querySelector('[data-reviews="agent_email"]'),
     email: document.querySelector('[data-reviews="email"]'),

@@ -9,7 +9,9 @@ const buysideWidget = () => {
       return DEFAULT_CONFIG[key];
     }
 
-    return el.textContent.replace(' ', '');
+    const { textContent } = el;
+
+    return textContent === '' ? DEFAULT_CONFIG[key] : textContent.replace(' ', '');
   };
 
   const buysideWidgetWrapper = document.querySelector('[data-buyside="widget"]');
