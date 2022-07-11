@@ -18,3 +18,6 @@ import './components/Yelp';
 import './components/adwerx';
 import './components/Reviews';
 import './components/buysideWidget';
+
+// pages
+import './pages/testimonials';

@@ -13,6 +13,20 @@ const getIndents = (width) => {
   }
 };
 
+const renderTotal = ({ membersHiddenList, membersTotal, membersCount }) => {
+  const totalMembers = membersHiddenList.childElementCount;
+
+  if (totalMembers <= 0) {
+    membersTotal.remove();
+    return true;
+  }
+
+  const membersCountEl = membersCount;
+
+  membersCountEl.textContent = `+${totalMembers}`;
+  return true;
+};
+
 const process = (membersWrapper, memberCardsEls, lastCard) => {
   const wrapper = membersWrapper;
 
@@ -33,8 +47,15 @@ const process = (membersWrapper, memberCardsEls, lastCard) => {
 };
 
 const init = () => {
-  const membersWrapper = document.querySelector('[data-members-cards="list"]');
-  const memberCardsEls = document.querySelectorAll('[data-members-cards="item"]');
+  const elements = {
+    membersWrapper: document.querySelector('[data-members-cards="list"]'),
+    memberCardsEls: document.querySelectorAll('[data-members-cards="item"]'),
+    membersHiddenList: document.querySelector('[data-members="hidden-list"]'),
+    membersTotal: document.querySelector('[data-members="total"]'),
+    membersCount: document.querySelector('[data-members="count"]'),
+  };
+
+  const { membersWrapper, memberCardsEls } = elements;
 
   if (!membersWrapper || !memberCardsEls) {
     return false;
@@ -43,6 +64,7 @@ const init = () => {
   const lastCard = memberCardsEls[memberCardsEls.length - 1];
 
   process(membersWrapper, memberCardsEls, lastCard);
+  renderTotal(elements);
 
   return true;
 };
