@@ -1,6 +1,53 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/api/fetchAll.js":
+/*!********************************!*\
+  !*** ./src/js/api/fetchAll.js ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchAll": function() { return /* binding */ fetchAll; }
+/* harmony export */ });
+var fetchAll = function fetchAll(urls) {
+  return Promise.all(urls.map(function (url) {
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      return {
+        data: data,
+        url: url
+      };
+    })["catch"](function (error) {
+      return {
+        error: error,
+        url: url
+      };
+    });
+  }));
+};
+
+/***/ }),
+
+/***/ "./src/js/api/index.js":
+/*!*****************************!*\
+  !*** ./src/js/api/index.js ***!
+  \*****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchAll": function() { return /* reexport safe */ _fetchAll__WEBPACK_IMPORTED_MODULE_0__.fetchAll; }
+/* harmony export */ });
+/* harmony import */ var _fetchAll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fetchAll */ "./src/js/api/fetchAll.js");
+
+
+/***/ }),
+
 /***/ "./src/js/components/MapHome/index.js":
 /*!********************************************!*\
   !*** ./src/js/components/MapHome/index.js ***!
@@ -194,134 +241,6 @@ var template = function template(params) {
 
 /***/ }),
 
-/***/ "./src/js/components/Reviews/api.js":
-/*!******************************************!*\
-  !*** ./src/js/components/Reviews/api.js ***!
-  \******************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fetchAll": function() { return /* binding */ fetchAll; }
-/* harmony export */ });
-var fetchAll = function fetchAll(urls) {
-  return Promise.all(urls.map(function (url) {
-    return fetch(url).then(function (response) {
-      return response.json();
-    }).then(function (data) {
-      return {
-        data: data,
-        url: url
-      };
-    })["catch"](function (error) {
-      return {
-        error: error,
-        url: url
-      };
-    });
-  }));
-};
-
-/***/ }),
-
-/***/ "./src/js/components/Reviews/buildUrl.js":
-/*!***********************************************!*\
-  !*** ./src/js/components/Reviews/buildUrl.js ***!
-  \***********************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "buildUrl": function() { return /* binding */ buildUrl; }
-/* harmony export */ });
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-/*
-{
-  serviceName: "zillow",
-  serviceArgs: {
-    zillow_partner_id: getContentElement(elements["zillow_partner_id"]),
-    zillow_nmls_id: getContentElement(elements["zillow_nmls_id"])
-  },
-  commonArgs: {
-  company: getContentElement(elements["company"]),
-  ...configRequest.args
-  },
-  base: configRequest.base,
-  dependence: ["zillow_partner_id", "zillow_nmls_id"]}
- */
-var buildUrl = function buildUrl(config) {
-  var serviceName = config.serviceName,
-      serviceArgs = config.serviceArgs,
-      commonArgs = config.commonArgs,
-      base = config.base,
-      _config$dependence = config.dependence,
-      dependence = _config$dependence === void 0 ? null : _config$dependence;
-  var company = commonArgs.company;
-  var url = new URL(base);
-
-  if (!company) {
-    // eslint-disable-next-line no-console
-    console.warn('No find company name.');
-    return false;
-  }
-
-  if (dependence) {
-    var check = dependence.every(function (item) {
-      return serviceArgs[item];
-    });
-
-    if (!check) {
-      // eslint-disable-next-line no-console
-      console.warn('Parameters keys must be equals to dependence!');
-      return false;
-    }
-  } // set service args
-
-
-  if (serviceArgs) {
-    Object.entries(serviceArgs).forEach(function (_ref) {
-      var _ref2 = _slicedToArray(_ref, 2),
-          key = _ref2[0],
-          value = _ref2[1];
-
-      if (value) {
-        url.searchParams.set("service[".concat(serviceName, "][").concat(key, "]"), value);
-      }
-    });
-  }
-
-  if (!serviceArgs) {
-    url.searchParams.set("service[".concat(serviceName, "]"), '');
-  } // set common args
-
-
-  Object.entries(commonArgs).forEach(function (_ref3) {
-    var _ref4 = _slicedToArray(_ref3, 2),
-        key = _ref4[0],
-        value = _ref4[1];
-
-    if (value) {
-      url.searchParams.set(key, value);
-    }
-  });
-  return url.href;
-};
-
-/***/ }),
-
 /***/ "./src/js/components/Reviews/htmlTemplateNav.js":
 /*!******************************************************!*\
   !*** ./src/js/components/Reviews/htmlTemplateNav.js ***!
@@ -350,13 +269,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "htmlTemplateReview": function() { return /* binding */ htmlTemplateReview; }
 /* harmony export */ });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/components/Reviews/utils.js");
-/* harmony import */ var _img_experience_logo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../img/experience-logo.png */ "./src/img/experience-logo.png");
+/* harmony import */ var _img_experience_logo_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../img/experience-logo.png */ "./src/img/experience-logo.png");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils */ "./src/js/utils/index.js");
 
 
 
 var getDate = function getDate(date) {
-  var formattedDate = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.formatDate)(date);
+  var formattedDate = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.formatDate)(date);
   return formattedDate ? "<div class=\"reviews__date\">".concat(formattedDate, "</div>") : '';
 };
 
@@ -373,13 +292,13 @@ var htmlTemplateReview = function htmlTemplateReview(review) {
       state = review.state,
       service = review.service,
       rating = review.rating;
-  var link = (_getContentElement = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getContentElement)(links[service])) !== null && _getContentElement !== void 0 ? _getContentElement : '#';
+  var link = (_getContentElement = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getContentElement)(links[service])) !== null && _getContentElement !== void 0 ? _getContentElement : '#';
   var name = "".concat(firstName, " ").concat((_lastName$ = lastName[0]) !== null && _lastName$ !== void 0 ? _lastName$ : '', ".");
   var abbr = "".concat((_firstName$ = firstName[0]) !== null && _firstName$ !== void 0 ? _firstName$ : 'R').concat((_lastName$2 = lastName[0]) !== null && _lastName$2 !== void 0 ? _lastName$2 : 'W');
   var location = [city, state].join(', ');
   var extraDataContent = JSON.parse(extraData);
   var agentEmail = extraDataContent.serviceProviderInfo.agent_name;
-  return "<div class=\"reviews__slide swiper-slide\">\n              <div class=\"reviews__header\">\n                  <div class=\"reviews__user-info\">\n                      <div class=\"reviews__user-img\">\n                          <div class=\"reviews__-user-symbols\">".concat(abbr, "</div>\n                      </div>\n                      <div>\n                          <div class=\"reviews__name\">").concat(name, "</div>\n                          <div class=\"reviews__stars reviews__stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_0__.rateCls)(rating), "\"></div>\n                      </div>\n                  </div>\n                  <div>\n                      <div class=\"reviews__city\">").concat(location, "</div>\n                      <div class=\"reviews__date\">").concat(getDate(date), "</div>\n                  </div>\n              </div>\n\n              <!-- content -->\n              <div class=\"reviews__content\">\n                <p class=\"reviews__text\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_0__.formatContent)(content), "</p>\n              </div>\n\n              <div class=\"reviews__footer\">\n\n                <!-- total reviews -->\n                <small>").concat(agentEmail, "</small>\n\n                <!-- link all reviews -->\n                <a href=\"").concat(link, "\" target=\"_blank\">\n                  <img\n                    src=\"").concat(_img_experience_logo_png__WEBPACK_IMPORTED_MODULE_1__, "\"\n                    loading=\"lazy\"\n                    alt=\"experience\"\n                    width=\"64px\"/>\n                </a>\n              </div>\n          </div>");
+  return "<div class=\"reviews__slide swiper-slide\">\n              <div class=\"reviews__header\">\n                  <div class=\"reviews__user-info\">\n                      <div class=\"reviews__user-img\">\n                          <div class=\"reviews__-user-symbols\">".concat(abbr, "</div>\n                      </div>\n                      <div>\n                          <div class=\"reviews__name\">").concat(name, "</div>\n                          <div class=\"reviews__stars reviews__stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getRateClass)(rating), "\"></div>\n                      </div>\n                  </div>\n                  <div>\n                      <div class=\"reviews__city\">").concat(location, "</div>\n                      <div class=\"reviews__date\">").concat(getDate(date), "</div>\n                  </div>\n              </div>\n\n              <!-- content -->\n              <div class=\"reviews__content\">\n                <p class=\"reviews__text\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.subString)(content, 240), "</p>\n              </div>\n\n              <div class=\"reviews__footer\">\n\n                <!-- total reviews -->\n                <small>").concat(agentEmail, "</small>\n\n                <!-- link all reviews -->\n                <a href=\"").concat(link, "\" target=\"_blank\">\n                  <img\n                    src=\"").concat(_img_experience_logo_png__WEBPACK_IMPORTED_MODULE_0__, "\"\n                    loading=\"lazy\"\n                    alt=\"experience\"\n                    width=\"64px\"/>\n                </a>\n              </div>\n          </div>");
 };
 
 /***/ }),
@@ -392,18 +311,16 @@ var htmlTemplateReview = function htmlTemplateReview(review) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _reviewsSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reviewsSlider */ "./src/js/components/Reviews/reviewsSlider.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/js/components/Reviews/utils.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../api */ "./src/js/api/index.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils */ "./src/js/utils/index.js");
 /* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./render */ "./src/js/components/Reviews/render.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./api */ "./src/js/components/Reviews/api.js");
-/* harmony import */ var _buildUrl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./buildUrl */ "./src/js/components/Reviews/buildUrl.js");
-/* harmony import */ var _htmlTemplateNav__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./htmlTemplateNav */ "./src/js/components/Reviews/htmlTemplateNav.js");
+/* harmony import */ var _htmlTemplateNav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./htmlTemplateNav */ "./src/js/components/Reviews/htmlTemplateNav.js");
+/* harmony import */ var _reviewsSlider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./reviewsSlider */ "./src/js/components/Reviews/reviewsSlider.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -448,13 +365,13 @@ var initReviews = function initReviews() {
     }, configRequest.args),
     base: configRequest.base
   };
-  var experienceUrl = (0,_buildUrl__WEBPACK_IMPORTED_MODULE_4__.buildUrl)(experienceUrlConf); // URLS
+  var experienceUrl = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.buildReviewsUrl)(experienceUrlConf); // URLS
 
   var urls = [experienceUrl].filter(function (url) {
     return url;
   }); // PROCESS GETTING REVIEWS
 
-  (0,_api__WEBPACK_IMPORTED_MODULE_3__.fetchAll)(urls).then(function (responseData) {
+  (0,_api__WEBPACK_IMPORTED_MODULE_0__.fetchAll)(urls).then(function (responseData) {
     var mergedData = responseData.map(function (_ref) {
       var data = _ref.data,
           error = _ref.error,
@@ -483,11 +400,11 @@ var initReviews = function initReviews() {
       return false;
     }
 
-    wrapperNav.insertAdjacentHTML('afterbegin', (0,_htmlTemplateNav__WEBPACK_IMPORTED_MODULE_5__.htmlTemplateNav)());
+    wrapperNav.insertAdjacentHTML('afterbegin', (0,_htmlTemplateNav__WEBPACK_IMPORTED_MODULE_3__.htmlTemplateNav)());
     (0,_render__WEBPACK_IMPORTED_MODULE_2__.renderReviews)(elements, reviews);
     return true;
   }).then(function (success) {
-    if (success) (0,_reviewsSlider__WEBPACK_IMPORTED_MODULE_0__.reviewsSliderInit)();
+    if (success) (0,_reviewsSlider__WEBPACK_IMPORTED_MODULE_4__.reviewsSliderInit)();
   });
   return true;
 };
@@ -641,52 +558,6 @@ var reviewsSliderInit = function reviewsSliderInit() {
 
 /***/ }),
 
-/***/ "./src/js/components/Reviews/utils.js":
-/*!********************************************!*\
-  !*** ./src/js/components/Reviews/utils.js ***!
-  \********************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "formatContent": function() { return /* binding */ formatContent; },
-/* harmony export */   "formatDate": function() { return /* binding */ formatDate; },
-/* harmony export */   "getContentElement": function() { return /* binding */ getContentElement; },
-/* harmony export */   "rateCls": function() { return /* binding */ rateCls; }
-/* harmony export */ });
-var getContentElement = function getContentElement(element) {
-  var hasContent = element && element.textContent !== '';
-  return hasContent ? element.textContent : null;
-};
-var formatDate = function formatDate(date) {
-  if (!date) {
-    return false;
-  }
-
-  var newDate = new Date(date);
-  return newDate.toLocaleString('en-US', {
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric'
-  });
-};
-var rateCls = function rateCls(rating) {
-  var formattedRating = "".concat(Math.round(+rating * 2) / 2);
-  return formattedRating.replace('.', '-');
-};
-var formatContent = function formatContent(content) {
-  var MAX_SYMBOLS = 240;
-
-  if (content.length > MAX_SYMBOLS) {
-    return "".concat(content.substring(0, 240).trim(), " ...");
-  }
-
-  return "".concat(content);
-};
-
-/***/ }),
-
 /***/ "./src/js/components/Yelp/api.js":
 /*!***************************************!*\
   !*** ./src/js/components/Yelp/api.js ***!
@@ -770,18 +641,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "htmlTemplateReview": function() { return /* binding */ htmlTemplateReview; }
 /* harmony export */ });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/components/Yelp/utils.js");
-/* harmony import */ var _svg_phone_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../svg/phone.svg */ "./src/svg/phone.svg");
+/* harmony import */ var _svg_phone_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../svg/phone.svg */ "./src/svg/phone.svg");
+/* harmony import */ var _img_noimage_jpeg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../img/noimage.jpeg */ "./src/img/noimage.jpeg");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils */ "./src/js/utils/index.js");
 
 
-var phoneSrc = new URL(_svg_phone_svg__WEBPACK_IMPORTED_MODULE_1__, "file:///home/app/src/js/components/Yelp/htmlTemplateReview.js");
+
+var phoneSrc = new URL(_svg_phone_svg__WEBPACK_IMPORTED_MODULE_0__, "file:///home/app/src/js/components/Yelp/htmlTemplateReview.js");
 
 var phoneHtml = function phoneHtml(phone) {
   if (!phone) {
     return '';
   }
 
-  return "<a href=\"".concat(phone, "\" class=\"yelp__number\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_0__.formatPhoneNumber)(phone), "</a>");
+  return "<a href=\"".concat(phone, "\" class=\"yelp__number\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_2__.formatPhoneNumber)(phone), "</a>");
 };
 
 var htmlTemplateReview = function htmlTemplateReview(review) {
@@ -795,7 +668,7 @@ var htmlTemplateReview = function htmlTemplateReview(review) {
   var _yelpReviews$ = yelpReviews[0],
       text = _yelpReviews$.text,
       url = _yelpReviews$.url;
-  return "\n    <div class=\"tabs__card yelp\">\n      <img alt=\"Yelp preview\"\n          loading=\"lazy\"\n          src=\"".concat(imageUrl, "\"\n          class=\"yelp__img\">\n          \n      <div class=\"yelp__content\">\n        <div class=\"yelp__title\">").concat(name, "</div>\n        <div class=\"yelp__rate\">\n          <div class=\"yelp__rate-stars yelp__rate-stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_0__.rateCls)(rating), "\"></div>\n          <div class=\"yelp__rate-text\">").concat(totalReviews, " reviews</div>\n        </div>\n      \n        <p class=\"paragraph yelp__text\">").concat(text, "</p>\n        \n        <a href=\"").concat(url, "\" class=\"yelp__link btn btn--min w-inline-block\" target=\"_blank\">\n          <span class=\"btn__text btn__text--min\">Read more on Yelp</span>\n        </a>\n      </div>\n      \n      <div class=\"yelp__phone\">\n        <span class=\"ico\">\n          <img src=\"").concat(phoneSrc, "\" class=\"phone\" alt=\"phone\"/>\n        </span>\n        ").concat(phoneHtml(phone), "\n        <span class=\"yelp__location\">").concat(address, "</span>\n      </div>\n    </div>\n    ");
+  return "\n    <div class=\"tabs__card yelp\">\n      <img alt=\"Yelp preview\"\n          loading=\"lazy\"\n          src=\"".concat(imageUrl === '' ? _img_noimage_jpeg__WEBPACK_IMPORTED_MODULE_1__ : imageUrl, "\"\n          class=\"yelp__img\">\n\n      <div class=\"yelp__content\">\n        <div class=\"yelp__title\">").concat(name, "</div>\n        <div class=\"yelp__rate\">\n          <div class=\"yelp__rate-stars yelp__rate-stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_2__.getRateClass)(rating), "\"></div>\n          <div class=\"yelp__rate-text\">").concat(totalReviews, " reviews</div>\n        </div>\n\n        <p class=\"paragraph yelp__text\">").concat(text, "</p>\n\n        <a href=\"").concat(url, "\" class=\"yelp__link btn btn--min w-inline-block\" target=\"_blank\">\n          <span class=\"btn__text btn__text--min\">Read more on Yelp</span>\n        </a>\n      </div>\n\n      <div class=\"yelp__phone\">\n        <span class=\"ico\">\n          <img src=\"").concat(phoneSrc, "\" class=\"phone\" alt=\"phone\"/>\n        </span>\n        ").concat(phoneHtml(phone), "\n        <span class=\"yelp__location\">").concat(address, "</span>\n      </div>\n    </div>\n    ");
 };
 
 /***/ }),
@@ -808,7 +681,7 @@ var htmlTemplateReview = function htmlTemplateReview(review) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/components/Yelp/utils.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils */ "./src/js/utils/index.js");
 /* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./render */ "./src/js/components/Yelp/render.js");
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./api */ "./src/js/components/Yelp/api.js");
 
@@ -895,47 +768,6 @@ var renderReviews = function renderReviews(elements, reviews) {
     wrapperTerm.innerHTML = '';
     wrapperTerm.insertAdjacentHTML('afterbegin', htmlReviews(termReviews));
   });
-};
-
-/***/ }),
-
-/***/ "./src/js/components/Yelp/utils.js":
-/*!*****************************************!*\
-  !*** ./src/js/components/Yelp/utils.js ***!
-  \*****************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "formatPhoneNumber": function() { return /* binding */ formatPhoneNumber; },
-/* harmony export */   "getContentElement": function() { return /* binding */ getContentElement; },
-/* harmony export */   "rateCls": function() { return /* binding */ rateCls; }
-/* harmony export */ });
-var getContentElement = function getContentElement(element) {
-  var hasContent = element && element.textContent !== '';
-
-  if (hasContent) {
-    return element.textContent;
-  } // eslint-disable-next-line no-console
-
-
-  console.warn("Not element: ".concat(element));
-  return null;
-};
-var rateCls = function rateCls(rating) {
-  var formattedRating = "".concat(Math.round(+rating * 2) / 2);
-  return formattedRating.replace('.', '-');
-};
-var formatPhoneNumber = function formatPhoneNumber(phoneNumberString) {
-  var cleaned = phoneNumberString.replace(/\D+/g, '');
-  var match = cleaned.match(/^1(\d{3})(\d{3})(\d{4})$/);
-
-  if (match) {
-    return "(".concat(match[1], ") ").concat(match[2], "-").concat(match[3]);
-  }
-
-  return null;
 };
 
 /***/ }),
@@ -1203,6 +1035,22 @@ var getIndents = function getIndents(width) {
   }
 };
 
+var renderTotal = function renderTotal(_ref) {
+  var membersHiddenList = _ref.membersHiddenList,
+      membersTotal = _ref.membersTotal,
+      membersCount = _ref.membersCount;
+  var totalMembers = membersHiddenList.childElementCount;
+
+  if (totalMembers <= 0) {
+    membersTotal.remove();
+    return true;
+  }
+
+  var membersCountEl = membersCount;
+  membersCountEl.textContent = "+".concat(totalMembers);
+  return true;
+};
+
 var process = function process(membersWrapper, memberCardsEls, lastCard) {
   var wrapper = membersWrapper;
 
@@ -1225,8 +1073,15 @@ var process = function process(membersWrapper, memberCardsEls, lastCard) {
 };
 
 var init = function init() {
-  var membersWrapper = document.querySelector('[data-members-cards="list"]');
-  var memberCardsEls = document.querySelectorAll('[data-members-cards="item"]');
+  var elements = {
+    membersWrapper: document.querySelector('[data-members-cards="list"]'),
+    memberCardsEls: document.querySelectorAll('[data-members-cards="item"]'),
+    membersHiddenList: document.querySelector('[data-members="hidden-list"]'),
+    membersTotal: document.querySelector('[data-members="total"]'),
+    membersCount: document.querySelector('[data-members="count"]')
+  };
+  var membersWrapper = elements.membersWrapper,
+      memberCardsEls = elements.memberCardsEls;
 
   if (!membersWrapper || !memberCardsEls) {
     return false;
@@ -1234,6 +1089,7 @@ var init = function init() {
 
   var lastCard = memberCardsEls[memberCardsEls.length - 1];
   process(membersWrapper, memberCardsEls, lastCard);
+  renderTotal(elements);
   return true;
 };
 
@@ -1289,6 +1145,186 @@ var overflowBodyForOpenMenu = function overflowBodyForOpenMenu() {
 };
 
 overflowBodyForOpenMenu();
+
+/***/ }),
+
+/***/ "./src/js/pages/testimonials/htmlTemplateReview.js":
+/*!*********************************************************!*\
+  !*** ./src/js/pages/testimonials/htmlTemplateReview.js ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "htmlTemplateReview": function() { return /* binding */ htmlTemplateReview; }
+/* harmony export */ });
+/* harmony import */ var _img_experience_logo_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../img/experience-logo.png */ "./src/img/experience-logo.png");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils */ "./src/js/utils/index.js");
+
+
+
+var getDate = function getDate(date) {
+  var formattedDate = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.formatDate)(date);
+  return formattedDate ? "<div class=\"reviews__date\">".concat(formattedDate, "</div>") : '';
+};
+
+var htmlTemplateReview = function htmlTemplateReview(review) {
+  var _getContentElement, _lastName$, _firstName$, _lastName$2;
+
+  var date = review.date,
+      links = review.links,
+      firstName = review.first_name,
+      lastName = review.last_name,
+      extraData = review.extra_data,
+      city = review.city,
+      content = review.content,
+      state = review.state,
+      service = review.service,
+      rating = review.rating;
+  var link = (_getContentElement = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getContentElement)(links[service])) !== null && _getContentElement !== void 0 ? _getContentElement : '#';
+  var name = "".concat(firstName, " ").concat((_lastName$ = lastName[0]) !== null && _lastName$ !== void 0 ? _lastName$ : '', ".");
+  var abbr = "".concat((_firstName$ = firstName[0]) !== null && _firstName$ !== void 0 ? _firstName$ : 'R').concat((_lastName$2 = lastName[0]) !== null && _lastName$2 !== void 0 ? _lastName$2 : 'W');
+  var location = [city, state].join(', ');
+  var extraDataContent = JSON.parse(extraData);
+  var agentEmail = extraDataContent.serviceProviderInfo.agent_name;
+  return "<div class=\"reviews__slide testimonials__item\">\n              <div class=\"reviews__header\">\n                  <div class=\"reviews__user-info\">\n                      <div class=\"reviews__user-img\">\n                          <div class=\"reviews__-user-symbols\">".concat(abbr, "</div>\n                      </div>\n                      <div>\n                          <div class=\"reviews__name\">").concat(name, "</div>\n                          <div class=\"reviews__stars reviews__stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getRateClass)(rating), "\"></div>\n                      </div>\n                  </div>\n                  <div>\n                      <div class=\"reviews__city\">").concat(location, "</div>\n                      <div class=\"reviews__date\">").concat(getDate(date), "</div>\n                  </div>\n              </div>\n\n              <!-- content -->\n              <div class=\"reviews__content\">\n                <p class=\"reviews__text\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.subString)(content, 240), "</p>\n              </div>\n\n              <div class=\"reviews__footer\">\n\n                <!-- total reviews -->\n                <small>").concat(agentEmail, "</small>\n\n                <!-- link all reviews -->\n                <a href=\"").concat(link, "\" target=\"_blank\">\n                  <img\n                    src=\"").concat(_img_experience_logo_png__WEBPACK_IMPORTED_MODULE_0__, "\"\n                    loading=\"lazy\"\n                    alt=\"experience\"\n                    width=\"64px\"/>\n                </a>\n              </div>\n          </div>");
+};
+
+/***/ }),
+
+/***/ "./src/js/pages/testimonials/index.js":
+/*!********************************************!*\
+  !*** ./src/js/pages/testimonials/index.js ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils */ "./src/js/utils/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api */ "./src/js/api/index.js");
+/* harmony import */ var _renderReviews__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./renderReviews */ "./src/js/pages/testimonials/renderReviews.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var initReviews = function initReviews() {
+  var elements = {
+    wrapperReviews: document.querySelector('[data-testimonials="wrapper"]'),
+    links: {
+      experience: document.querySelector('[data-reviews="experience-link"]')
+    },
+    company: document.querySelector('[data-reviews="company"]'),
+    email: document.querySelector('[data-reviews="email"]')
+  };
+  var configRequest = {
+    base: 'https://review.wowmi.us/api/web/api/v1/reviews',
+    args: {
+      rate_min: 4
+    }
+  };
+  var wrapperReviews = elements.wrapperReviews;
+
+  if (!wrapperReviews) {
+    return false;
+  } // EXPERIENCE CONFIG
+
+
+  var experienceUrlConf = {
+    serviceName: 'experience',
+    serviceArgs: {
+      email: (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getContentElement)(elements.email)
+    },
+    commonArgs: _objectSpread({
+      company: (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getContentElement)(elements.company)
+    }, configRequest.args),
+    base: configRequest.base
+  }; // URLS
+
+  var experienceUrl = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.buildReviewsUrl)(experienceUrlConf);
+  var urls = [experienceUrl].filter(function (url) {
+    return url;
+  }); // PROCESS GETTING REVIEWS
+
+  (0,_api__WEBPACK_IMPORTED_MODULE_1__.fetchAll)(urls).then(function (responseData) {
+    var mergedData = responseData.map(function (_ref) {
+      var data = _ref.data,
+          error = _ref.error,
+          url = _ref.url;
+
+      if (error) {
+        // eslint-disable-next-line no-console
+        console.warn("Error: ".concat(error, " from ").concat(url));
+        return false;
+      }
+
+      return data;
+    }).flat();
+
+    if (mergedData.includes(false)) {
+      // eslint-disable-next-line no-console
+      console.log('Merged data error');
+      return null;
+    }
+
+    return mergedData;
+  }).then(function (reviews) {
+    if (reviews.length === 0) {
+      // eslint-disable-next-line no-console
+      console.warn('No reviews');
+      return false;
+    }
+
+    (0,_renderReviews__WEBPACK_IMPORTED_MODULE_2__.renderReviews)(elements, reviews);
+    return true;
+  });
+  return true;
+};
+
+initReviews();
+
+/***/ }),
+
+/***/ "./src/js/pages/testimonials/renderReviews.js":
+/*!****************************************************!*\
+  !*** ./src/js/pages/testimonials/renderReviews.js ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderReviews": function() { return /* binding */ renderReviews; }
+/* harmony export */ });
+/* harmony import */ var _htmlTemplateReview__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./htmlTemplateReview */ "./src/js/pages/testimonials/htmlTemplateReview.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var htmlReviews = function htmlReviews(elements, reviews) {
+  var links = elements.links;
+  return reviews.map(function (review) {
+    return (0,_htmlTemplateReview__WEBPACK_IMPORTED_MODULE_0__.htmlTemplateReview)(_objectSpread(_objectSpread({}, review), {}, {
+      links: links
+    }));
+  }).join('');
+};
+
+var renderReviews = function renderReviews(elements, reviews) {
+  var wrapperReviews = elements.wrapperReviews;
+  wrapperReviews.innerHTML = '';
+  wrapperReviews.insertAdjacentHTML('afterbegin', htmlReviews(elements, reviews));
+};
 
 /***/ }),
 
@@ -1491,6 +1527,261 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+/***/ }),
+
+/***/ "./src/js/utils/buildReviewsUrl.js":
+/*!*****************************************!*\
+  !*** ./src/js/utils/buildReviewsUrl.js ***!
+  \*****************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "buildReviewsUrl": function() { return /* binding */ buildReviewsUrl; }
+/* harmony export */ });
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/*
+{
+  serviceName: "zillow",
+  serviceArgs: {
+    zillow_partner_id: getContentElement(elements["zillow_partner_id"]),
+    zillow_nmls_id: getContentElement(elements["zillow_nmls_id"])
+  },
+  commonArgs: {
+  company: getContentElement(elements["company"]),
+  ...configRequest.args
+  },
+  base: configRequest.base,
+  dependence: ["zillow_partner_id", "zillow_nmls_id"]}
+ */
+var buildReviewsUrl = function buildReviewsUrl(config) {
+  var serviceName = config.serviceName,
+      serviceArgs = config.serviceArgs,
+      commonArgs = config.commonArgs,
+      base = config.base,
+      _config$dependence = config.dependence,
+      dependence = _config$dependence === void 0 ? null : _config$dependence;
+  var company = commonArgs.company;
+  var url = new URL(base);
+
+  if (!company) {
+    // eslint-disable-next-line no-console
+    console.warn('No find company name.');
+    return false;
+  }
+
+  if (dependence) {
+    var check = dependence.every(function (item) {
+      return serviceArgs[item];
+    });
+
+    if (!check) {
+      // eslint-disable-next-line no-console
+      console.warn('Parameters keys must be equals to dependence!');
+      return false;
+    }
+  } // set service args
+
+
+  if (serviceArgs) {
+    Object.entries(serviceArgs).forEach(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+          key = _ref2[0],
+          value = _ref2[1];
+
+      if (value) {
+        url.searchParams.set("service[".concat(serviceName, "][").concat(key, "]"), value);
+      }
+    });
+  }
+
+  if (!serviceArgs) {
+    url.searchParams.set("service[".concat(serviceName, "]"), '');
+  } // set common args
+
+
+  Object.entries(commonArgs).forEach(function (_ref3) {
+    var _ref4 = _slicedToArray(_ref3, 2),
+        key = _ref4[0],
+        value = _ref4[1];
+
+    if (value) {
+      url.searchParams.set(key, value);
+    }
+  });
+  return url.href;
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/formatDate.js":
+/*!************************************!*\
+  !*** ./src/js/utils/formatDate.js ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatDate": function() { return /* binding */ formatDate; },
+/* harmony export */   "rateCls": function() { return /* binding */ rateCls; }
+/* harmony export */ });
+var formatDate = function formatDate(date) {
+  if (!date) {
+    return false;
+  }
+
+  var newDate = new Date(date);
+  return newDate.toLocaleString('en-US', {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric'
+  });
+};
+var rateCls = function rateCls(rating) {
+  var formattedRating = "".concat(Math.round(+rating * 2) / 2);
+  return formattedRating.replace('.', '-');
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/formatPhoneNumber.js":
+/*!*******************************************!*\
+  !*** ./src/js/utils/formatPhoneNumber.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatPhoneNumber": function() { return /* binding */ formatPhoneNumber; }
+/* harmony export */ });
+var formatPhoneNumber = function formatPhoneNumber(phoneNumberString) {
+  var cleaned = phoneNumberString.replace(/\D+/g, '');
+  var match = cleaned.match(/^1(\d{3})(\d{3})(\d{4})$/);
+
+  if (match) {
+    return "(".concat(match[1], ") ").concat(match[2], "-").concat(match[3]);
+  }
+
+  return null;
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/getContentElement.js":
+/*!*******************************************!*\
+  !*** ./src/js/utils/getContentElement.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatDate": function() { return /* binding */ formatDate; },
+/* harmony export */   "getContentElement": function() { return /* binding */ getContentElement; }
+/* harmony export */ });
+var getContentElement = function getContentElement(element) {
+  var hasContent = element && element.textContent !== '';
+  return hasContent ? element.textContent : null;
+};
+var formatDate = function formatDate(date) {
+  if (!date) {
+    return false;
+  }
+
+  var newDate = new Date(date);
+  return newDate.toLocaleString('en-US', {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric'
+  });
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/getRateClass.js":
+/*!**************************************!*\
+  !*** ./src/js/utils/getRateClass.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getRateClass": function() { return /* binding */ getRateClass; }
+/* harmony export */ });
+var getRateClass = function getRateClass(rating) {
+  var formattedRating = "".concat(Math.round(+rating * 2) / 2);
+  return formattedRating.replace('.', '-');
+};
+
+/***/ }),
+
+/***/ "./src/js/utils/index.js":
+/*!*******************************!*\
+  !*** ./src/js/utils/index.js ***!
+  \*******************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "buildReviewsUrl": function() { return /* reexport safe */ _buildReviewsUrl__WEBPACK_IMPORTED_MODULE_2__.buildReviewsUrl; },
+/* harmony export */   "formatDate": function() { return /* reexport safe */ _formatDate__WEBPACK_IMPORTED_MODULE_5__.formatDate; },
+/* harmony export */   "formatPhoneNumber": function() { return /* reexport safe */ _formatPhoneNumber__WEBPACK_IMPORTED_MODULE_3__.formatPhoneNumber; },
+/* harmony export */   "getContentElement": function() { return /* reexport safe */ _getContentElement__WEBPACK_IMPORTED_MODULE_4__.getContentElement; },
+/* harmony export */   "getRateClass": function() { return /* reexport safe */ _getRateClass__WEBPACK_IMPORTED_MODULE_1__.getRateClass; },
+/* harmony export */   "subString": function() { return /* reexport safe */ _subSrting__WEBPACK_IMPORTED_MODULE_0__.subString; }
+/* harmony export */ });
+/* harmony import */ var _subSrting__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./subSrting */ "./src/js/utils/subSrting.js");
+/* harmony import */ var _getRateClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getRateClass */ "./src/js/utils/getRateClass.js");
+/* harmony import */ var _buildReviewsUrl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./buildReviewsUrl */ "./src/js/utils/buildReviewsUrl.js");
+/* harmony import */ var _formatPhoneNumber__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./formatPhoneNumber */ "./src/js/utils/formatPhoneNumber.js");
+/* harmony import */ var _getContentElement__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getContentElement */ "./src/js/utils/getContentElement.js");
+/* harmony import */ var _formatDate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./formatDate */ "./src/js/utils/formatDate.js");
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/js/utils/subSrting.js":
+/*!***********************************!*\
+  !*** ./src/js/utils/subSrting.js ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "subString": function() { return /* binding */ subString; }
+/* harmony export */ });
+var subString = function subString(content) {
+  var max = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 240;
+
+  if (content.length > max) {
+    return "".concat(content.substring(0, max).trim(), " ...");
+  }
+
+  return "".concat(content);
+};
 
 /***/ }),
 
@@ -13264,6 +13555,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 
 "use strict";
 module.exports = __webpack_require__.p + "img/experience-logo.png";
+
+/***/ }),
+
+/***/ "./src/img/noimage.jpeg":
+/*!******************************!*\
+  !*** ./src/img/noimage.jpeg ***!
+  \******************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+module.exports = __webpack_require__.p + "img/noimage.jpeg";
 
 /***/ }),
 
@@ -26449,6 +26751,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Reviews__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Reviews */ "./src/js/components/Reviews/index.js");
 /* harmony import */ var _components_buysideWidget__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/buysideWidget */ "./src/js/components/buysideWidget.js");
 /* harmony import */ var _components_buysideWidget__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_buysideWidget__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _pages_testimonials__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/testimonials */ "./src/js/pages/testimonials/index.js");
  // plugins
 
  // components
@@ -26463,6 +26766,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+ // pages
 
 
 }();
