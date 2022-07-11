@@ -1,9 +1,9 @@
-import { reviewsSliderInit } from './reviewsSlider';
-import { getContentElement } from './utils';
+import { fetchAll } from '../../api';
+import { getContentElement, buildReviewsUrl } from '../../utils';
+
 import { renderReviews } from './render';
-import { fetchAll } from './api';
-import { buildUrl } from './buildUrl';
 import { htmlTemplateNav } from './htmlTemplateNav';
+import { reviewsSliderInit } from './reviewsSlider';
 
 const initReviews = () => {
   const elements = {
@@ -43,7 +43,7 @@ const initReviews = () => {
     base: configRequest.base,
   };
 
-  const experienceUrl = buildUrl(experienceUrlConf);
+  const experienceUrl = buildReviewsUrl(experienceUrlConf);
 
   // URLS
   const urls = [experienceUrl].filter((url) => url);

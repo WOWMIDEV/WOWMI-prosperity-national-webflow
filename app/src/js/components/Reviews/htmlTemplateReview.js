@@ -1,5 +1,6 @@
-import { formatDate, getContentElement, rateCls, formatContent } from './utils';
 import experienceLogo from '../../../img/experience-logo.png';
+
+import { formatDate, getContentElement, getRateClass, subString } from '../../utils';
 
 const getDate = (date) => {
   const formattedDate = formatDate(date);
@@ -35,7 +36,7 @@ export const htmlTemplateReview = (review) => {
                       </div>
                       <div>
                           <div class="reviews__name">${name}</div>
-                          <div class="reviews__stars reviews__stars--${rateCls(rating)}"></div>
+                          <div class="reviews__stars reviews__stars--${getRateClass(rating)}"></div>
                       </div>
                   </div>
                   <div>
@@ -46,7 +47,7 @@ export const htmlTemplateReview = (review) => {
 
               <!-- content -->
               <div class="reviews__content">
-                <p class="reviews__text">${formatContent(content)}</p>
+                <p class="reviews__text">${subString(content, 240)}</p>
               </div>
 
               <div class="reviews__footer">

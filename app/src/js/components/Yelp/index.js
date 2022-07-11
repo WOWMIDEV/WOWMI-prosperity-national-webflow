@@ -1,4 +1,5 @@
-import { getContentElement } from './utils';
+import { getContentElement } from '../../utils';
+
 import { renderReviews } from './render';
 import { getReviews } from './api';
 

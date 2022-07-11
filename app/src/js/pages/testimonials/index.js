@@ -1,7 +1,7 @@
-import { renderReviews } from './renderReviews';
-
 import { getContentElement, buildReviewsUrl } from '../../utils';
 import { fetchAll } from '../../api';
+
+import { renderReviews } from './renderReviews';
 
 const initReviews = () => {
   const elements = {

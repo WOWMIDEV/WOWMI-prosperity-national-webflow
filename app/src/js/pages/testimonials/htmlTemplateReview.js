@@ -1,5 +1,5 @@
-import { formatDate, getContentElement, getRateClass, subString } from '../../utils';
 import experienceLogo from '../../../img/experience-logo.png';
+import { formatDate, getContentElement, getRateClass, subString } from '../../utils';
 
 const getDate = (date) => {
   const formattedDate = formatDate(date);
