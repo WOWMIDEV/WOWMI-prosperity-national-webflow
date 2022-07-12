@@ -126,6 +126,7 @@
 
   @include media-tablet-x {
     width: 90px;
+    background-position: 0px -20px;
   }
 }
 
@@ -350,3 +351,23 @@
 .reviews__date {
   color: $color11;
 }
+
+.reviews__city {
+  justify-content: flex-end;
+  display: flex;
+}
+
+.reviews__city-name {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  max-width: 120px;
+  padding-right: 10px;
+
+  @include media-tablet-x {
+    max-width: none;
+  }
+}
+

@@ -42,7 +42,7 @@ export const htmlTemplateReview = (review) => {
                   </div>
                   <div>
                       <div class="reviews__city">
-                        <span class="reviews__city-name">${subString(city, 12)}</span>
+                        <span class="reviews__city-name">${city}</span>
                         <span class="reviews__city-state-name">${state}</span>
                       </div>
                       <div class="reviews__date">${getDate(date)}</div>
