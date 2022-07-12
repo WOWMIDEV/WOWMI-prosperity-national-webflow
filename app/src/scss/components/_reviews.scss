@@ -18,13 +18,28 @@
 
   width: 1000px;
   margin: 0 auto;
+
+  @include media-tablet-m {
+    width: 100%;
+  }
 }
 
 .reviews__slider.swiper {
   height: 380px;
 
+
+  @include media-tablet-x {
+    max-width: 80%;
+    height: 500px;
+  }
+
   @include media-tablet-m {
-    max-width: 100%;
+    max-width: 70%;
+  }
+
+  @include media-mobile-x {
+    width: 100%;
+    max-width: none;
   }
 }
 
@@ -95,6 +110,10 @@
   background-position: 0px -2px;
   background-size: 100%;
   background-repeat: no-repeat;
+
+  @include media-tablet-x {
+    width: 90px;
+  }
 }
 
 .reviews__stars.reviews__stars--4-5 {
@@ -104,6 +123,10 @@
   background-position: 0px -27px;
   background-size: 100%;
   background-repeat: no-repeat;
+
+  @include media-tablet-x {
+    width: 90px;
+  }
 }
 
 .reviews__stars.reviews__stars--4 {
@@ -113,6 +136,10 @@
   background-position: 0px -53px;
   background-size: 100%;
   background-repeat: no-repeat;
+
+  @include media-tablet-x {
+    width: 90px;
+  }
 }
 
 .reviews__stars.reviews__stars--3-5 {
@@ -122,6 +149,10 @@
   background-position: 0px -79px;
   background-size: 100%;
   background-repeat: no-repeat;
+
+  @include media-tablet-x {
+    width: 90px;
+  }
 }
 
 .reviews__stars.reviews__stars--3 {
@@ -131,6 +162,10 @@
   background-position: 0px -109px;
   background-size: 100%;
   background-repeat: no-repeat;
+
+  @include media-tablet-x {
+    width: 90px;
+  }
 }
 
 .reviews__name {
@@ -232,11 +267,19 @@
   }
 
   .slider__arrow--prev {
-    left: -100px
+    left: -100px;
+
+    @include media-tablet-x {
+      left: 10px;
+    }
   }
 
   .slider__arrow--next {
     right: -100px;
+
+    @include media-tablet-x {
+      right: 10px;
+    }
   }
 }
 
@@ -286,4 +329,24 @@
 .reviews__rate-text {
   font-size: 1rem;
   font-weight: 600;
+}
+
+.swiper-slide {
+  .reviews__header {
+    @include media-tablet-x {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .reviews__user-info {
+    @include media-tablet-x {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.reviews__date {
+  color: $color11;
 }

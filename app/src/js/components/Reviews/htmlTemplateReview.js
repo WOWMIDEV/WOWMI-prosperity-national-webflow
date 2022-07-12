@@ -36,7 +36,10 @@ export const htmlTemplateReview = (review) => {
                       </div>
                       <div>
                           <div class="reviews__name">${name}</div>
-                          <div class="reviews__stars reviews__stars--${getRateClass(rating)}"></div>
+                          <div class="reviews__rate">
+                            <span class="reviews__stars reviews__stars--${getRateClass(rating)}"></span>
+                            <span class="reviews__rate-text">${rating.toFixed(1)}</span>
+                          </div>
                       </div>
                   </div>
                   <div>
