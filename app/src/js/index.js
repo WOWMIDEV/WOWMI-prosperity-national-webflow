@@ -7,6 +7,7 @@ import './plugins/remodal';
 import './components/MapHome';
 import './components/faqDropdowns';
 import './components/membersCards';
+import './components/conversationForm';
 import './components/overflowBodyForOpenMenu';
 
 // sliders

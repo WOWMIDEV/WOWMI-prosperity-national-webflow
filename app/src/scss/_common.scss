@@ -144,15 +144,30 @@
     position: absolute;
     bottom: -90px;
     left: 60px;
+
+    @include media-mobile-x {
+      position: absolute;
+      bottom: -115px;
+      left: 20px;
+      top: auto;
+    }
   }
 
   .slider__arrow.slider__arrow--next {
     position: absolute;
     bottom: -90px;
     right: 60px;
+
+    @include media-mobile-x {
+      position: absolute;
+      bottom: -115px;
+      right: 20px;
+      top: auto;
+    }
   }
 
   .swiper-pagination-bullets.swiper-pagination-horizontal.swiper-pagination.reviews__pagination {
+    width: 120px;
     left: 50%;
     bottom: -60px;
   }
@@ -407,44 +422,6 @@
   background-color: $color6;
   color: $color3;
 }
-
-/* BUYSIDE REPORT START */
-.report__search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.report__arrow {
-  display: inline-block;
-  padding-left: 10px;
-}
-
-.buyside_widget_autocomplete-items {
-  position: absolute;
-  top: 110%;
-  max-height: 200px;
-  border: 3px solid $color4;
-  border-radius: 8px;
-}
-
-@media (max-width: 768px) {
-  .buyside_widget_autocomplete-items {
-    max-height: 110px;
-  }
-}
-
-.buyside_widget_autocomplete-items div {
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.buyside_widget_autocomplete-items div strong {
-  color: $color3;
-  font-weight: 600;
-}
-
-/* BUYSIDE REPORT END */
 
 /* QUIZ START*/
 .remodal-close {

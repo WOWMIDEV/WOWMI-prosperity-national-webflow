@@ -158,6 +158,17 @@
   -ms-flex-align: center;
   align-items: center;
 }
+@media (max-width: 479px) {
+  .reviews__header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+}
 
 .reviews__user-info {
   display: -webkit-box;
@@ -166,6 +177,11 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+@media (max-width: 479px) {
+  .reviews__user-info {
+    padding-bottom: 20px;
+  }
 }
 
 .reviews__city {
@@ -231,24 +247,21 @@
   right: -100px;
 }
 
-.report__search-home {
-  position: relative;
-  padding: 65px 30px;
-  height: 60px;
-  min-width: 500px;
-  border-radius: 5px;
-}
 @media (max-width: 479px) {
-  .report__search-home {
-    height: auto;
-    padding: 20px;
+  .testimonials__cz .reviews__wrapper {
+    display: block;
+  }
+  .testimonials__cz .reviews__slide {
+    width: 100%;
+    margin-bottom: 30px;
   }
 }
-.report__search-home #buyside-widget-container {
+
+#buyside-widget-container {
   width: 100%;
   min-width: 100%;
 }
-.report__search-home #buyside-widget-container > div {
+#buyside-widget-container > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -260,7 +273,7 @@
   border-radius: 6px;
 }
 @media (max-width: 479px) {
-  .report__search-home #buyside-widget-container > div {
+  #buyside-widget-container > div {
     padding: 20px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -268,18 +281,73 @@
             flex-direction: column;
   }
 }
-.report__search-home .buyside_widget_input_div {
+
+.report__search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.report__arrow {
+  display: inline-block;
+  padding-left: 10px;
+}
+
+.buyside_widget_autocomplete-items {
+  position: absolute;
+  top: 110%;
+  max-height: 200px;
+  border: 3px solid #eefafc;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .buyside_widget_autocomplete-items {
+    max-height: 110px;
+  }
+}
+.buyside_widget_autocomplete-items div {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.buyside_widget_autocomplete-items div strong {
+  color: #07becb;
+  font-weight: 600;
+}
+
+.report__search {
+  position: relative;
+  padding: 65px 30px;
+  height: 60px;
+  min-width: 500px;
+  border-radius: 5px;
+}
+@media (max-width: 479px) {
+  .report__search {
+    min-width: 100%;
+    height: auto;
+    padding: 20px;
+  }
+}
+.report__search .buyside_widget_input_div {
   -webkit-box-flex: fit-content;
       -ms-flex: fit-content;
           flex: fit-content;
 }
 @media (max-width: 479px) {
-  .report__search-home .buyside_widget_input_div {
+  .report__search .buyside_widget_input_div {
     width: 100%;
     margin-bottom: 10px;
   }
 }
-.report__search-home .input.report__search-input {
+.report__search .input.report__search-input {
   height: 4rem;
   width: 100%;
   min-width: 100%;
@@ -289,7 +357,7 @@
   font-weight: 400;
   margin-bottom: 0;
 }
-.report__search-home .button__wrapper {
+.report__search .button__wrapper {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
@@ -312,14 +380,15 @@
   color: #ffffff;
 }
 @media (max-width: 479px) {
-  .report__search-home .button__wrapper {
+  .report__search .button__wrapper {
     width: 100%;
   }
 }
-.report__search-home .button__wrapper:hover {
+.report__search .button__wrapper:hover {
   background-color: #03828b;
 }
-.report__search-home .buyside_widget_autocomplete-items {
+.report__search .buyside_widget_autocomplete-items {
+  padding: 0;
   position: absolute;
   top: 75%;
   left: 27px;
@@ -329,23 +398,34 @@
   border-radius: 8px;
 }
 @media (max-width: 479px) {
-  .report__search-home .buyside_widget_autocomplete-items {
+  .report__search .buyside_widget_autocomplete-items {
     left: 36px;
     right: 36px;
     top: 83%;
   }
 }
-.report__search-home .buyside_widget_autocomplete-items div {
+.report__search .buyside_widget_autocomplete-items div {
+  padding: 5px 20px;
   font-size: 16px;
   line-height: 1.5;
   color: #828282;
+  border-radius: 4px;
 }
-.report__search-home .report__load {
+.report__search .report__load {
   padding: 20px;
   background: #ffffff;
   width: 94%;
   border-radius: 6px;
   text-align: center;
+}
+
+.section__report .report__search {
+  padding: 0;
+}
+.section__report .report__search .buyside_widget_autocomplete-items {
+  width: 100%;
+  left: -3px;
+  top: 100%;
 }
 
 .map-home {
@@ -1130,48 +1210,6 @@
   color: #07becb;
 }
 
-/* BUYSIDE REPORT START */
-.report__search {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.report__arrow {
-  display: inline-block;
-  padding-left: 10px;
-}
-
-.buyside_widget_autocomplete-items {
-  position: absolute;
-  top: 110%;
-  max-height: 200px;
-  border: 3px solid #eefafc;
-  border-radius: 8px;
-}
-
-@media (max-width: 768px) {
-  .buyside_widget_autocomplete-items {
-    max-height: 110px;
-  }
-}
-.buyside_widget_autocomplete-items div {
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.buyside_widget_autocomplete-items div strong {
-  color: #07becb;
-  font-weight: 600;
-}
-
-/* BUYSIDE REPORT END */
 /* QUIZ START*/
 .remodal-close {
   position: fixed !important;

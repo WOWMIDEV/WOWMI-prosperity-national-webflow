@@ -22,8 +22,6 @@ export const htmlTemplateReview = (review) => {
   const link = getContentElement(links[service]) ?? '#';
   const name = `${firstName} ${lastName[0] ?? ''}.`;
   const abbr = `${firstName[0] ?? 'R'}${lastName[0] ?? 'W'}`;
-  const location = [city, state].join(', ');
-
   const extraDataContent = JSON.parse(extraData);
   const { agent_name: agentEmail } = extraDataContent.serviceProviderInfo;
 
@@ -35,11 +33,18 @@ export const htmlTemplateReview = (review) => {
                       </div>
                       <div>
                           <div class="reviews__name">${name}</div>
-                          <div class="reviews__stars reviews__stars--${getRateClass(rating)}"></div>
+                          <div class="reviews__rate">
+                            <span class="reviews__stars reviews__stars--${getRateClass(rating)}"></span>
+                            <span class="reviews__rate-text">${rating.toFixed(1)}</span>
+                          </div>
+
                       </div>
                   </div>
                   <div>
-                      <div class="reviews__city">${location}</div>
+                      <div class="reviews__city">
+                        <span class="reviews__city-name">${city}</span>
+                        <span class="reviews__city-state-name">${state}</span>
+                      </div>
                       <div class="reviews__date">${getDate(date)}</div>
                   </div>
               </div>
