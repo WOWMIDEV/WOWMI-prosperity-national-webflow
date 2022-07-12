@@ -1,5 +1,3 @@
-import { value } from 'lodash/seq';
-
 const renderState = (state, placeHolder) => {
   const COLOR_TEXT = '#232323';
   const { value: stateName } = state;
