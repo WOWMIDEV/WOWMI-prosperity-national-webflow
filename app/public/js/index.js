@@ -298,7 +298,7 @@ var htmlTemplateReview = function htmlTemplateReview(review) {
   var location = [city, state].join(', ');
   var extraDataContent = JSON.parse(extraData);
   var agentEmail = extraDataContent.serviceProviderInfo.agent_name;
-  return "<div class=\"reviews__slide swiper-slide\">\n              <div class=\"reviews__header\">\n                  <div class=\"reviews__user-info\">\n                      <div class=\"reviews__user-img\">\n                          <div class=\"reviews__-user-symbols\">".concat(abbr, "</div>\n                      </div>\n                      <div>\n                          <div class=\"reviews__name\">").concat(name, "</div>\n                          <div class=\"reviews__stars reviews__stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getRateClass)(rating), "\"></div>\n                      </div>\n                  </div>\n                  <div>\n                      <div class=\"reviews__city\">").concat(location, "</div>\n                      <div class=\"reviews__date\">").concat(getDate(date), "</div>\n                  </div>\n              </div>\n\n              <!-- content -->\n              <div class=\"reviews__content\">\n                <p class=\"reviews__text\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.subString)(content, 240), "</p>\n              </div>\n\n              <div class=\"reviews__footer\">\n\n                <!-- total reviews -->\n                <small>").concat(agentEmail, "</small>\n\n                <!-- link all reviews -->\n                <a href=\"").concat(link, "\" target=\"_blank\">\n                  <img\n                    src=\"").concat(_img_experience_logo_png__WEBPACK_IMPORTED_MODULE_0__, "\"\n                    loading=\"lazy\"\n                    alt=\"experience\"\n                    width=\"64px\"/>\n                </a>\n              </div>\n          </div>");
+  return "<div class=\"reviews__slide swiper-slide\">\n              <div class=\"reviews__header\">\n                  <div class=\"reviews__user-info\">\n                      <div class=\"reviews__user-img\">\n                          <div class=\"reviews__-user-symbols\">".concat(abbr, "</div>\n                      </div>\n                      <div>\n                          <div class=\"reviews__name\">").concat(name, "</div>\n                          <div class=\"reviews__rate\">\n                            <span class=\"reviews__stars reviews__stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getRateClass)(rating), "\"></span>\n                            <span class=\"reviews__rate-text\">").concat(rating.toFixed(1), "</span>\n                          </div>\n                      </div>\n                  </div>\n                  <div>\n                      <div class=\"reviews__city\">\n                        <span class=\"reviews__city-name\">").concat(city, "</span>\n                        <span class=\"reviews__city-state-name\">").concat(state, "</span>\n                      </div>\n                      <div class=\"reviews__date\">").concat(getDate(date), "</div>\n                  </div>\n              </div>\n\n              <!-- content -->\n              <div class=\"reviews__content\">\n                <p class=\"reviews__text\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.subString)(content, 240), "</p>\n              </div>\n\n              <div class=\"reviews__footer\">\n\n                <!-- total reviews -->\n                <small>").concat(agentEmail, "</small>\n\n                <!-- link all reviews -->\n                <a href=\"").concat(link, "\" target=\"_blank\">\n                  <img\n                    src=\"").concat(_img_experience_logo_png__WEBPACK_IMPORTED_MODULE_0__, "\"\n                    loading=\"lazy\"\n                    alt=\"experience\"\n                    width=\"64px\"/>\n                </a>\n              </div>\n          </div>");
 };
 
 /***/ }),
@@ -984,6 +984,58 @@ buysideWidget();
 
 /***/ }),
 
+/***/ "./src/js/components/customSelect.js":
+/*!*******************************************!*\
+  !*** ./src/js/components/customSelect.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "init": function() { return /* binding */ init; }
+/* harmony export */ });
+var renderOption = function renderOption(option, placeHolder) {
+  var COLOR_TEXT = '#232323';
+  var value = option.value;
+  var output = placeHolder;
+  output.style.color = COLOR_TEXT;
+  output.textContent = value;
+};
+
+var process = function process(wrapper) {
+  var elementsSelect = {
+    options: wrapper.querySelectorAll('[data-select="option"]'),
+    placeHolder: wrapper.querySelector('[data-select="placeholder"]')
+  };
+  var options = elementsSelect.options,
+      placeHolder = elementsSelect.placeHolder;
+  options.forEach(function (option) {
+    return option.addEventListener('click', function () {
+      return renderOption(option, placeHolder);
+    });
+  });
+};
+
+var init = function init() {
+  var elements = {
+    wrapper: document.querySelectorAll('[data-select="wrapper"]')
+  };
+  var wrapper = elements.wrapper;
+
+  if (!elements.wrapper) {
+    return false;
+  }
+
+  wrapper.forEach(function (selectWrapper) {
+    return process(selectWrapper);
+  });
+  return true;
+};
+init();
+
+/***/ }),
+
 /***/ "./src/js/components/faqDropdowns.js":
 /*!*******************************************!*\
   !*** ./src/js/components/faqDropdowns.js ***!
@@ -1185,10 +1237,9 @@ var htmlTemplateReview = function htmlTemplateReview(review) {
   var link = (_getContentElement = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getContentElement)(links[service])) !== null && _getContentElement !== void 0 ? _getContentElement : '#';
   var name = "".concat(firstName, " ").concat((_lastName$ = lastName[0]) !== null && _lastName$ !== void 0 ? _lastName$ : '', ".");
   var abbr = "".concat((_firstName$ = firstName[0]) !== null && _firstName$ !== void 0 ? _firstName$ : 'R').concat((_lastName$2 = lastName[0]) !== null && _lastName$2 !== void 0 ? _lastName$2 : 'W');
-  var location = [city, state].join(', ');
   var extraDataContent = JSON.parse(extraData);
   var agentEmail = extraDataContent.serviceProviderInfo.agent_name;
-  return "<div class=\"reviews__slide testimonials__item\">\n              <div class=\"reviews__header\">\n                  <div class=\"reviews__user-info\">\n                      <div class=\"reviews__user-img\">\n                          <div class=\"reviews__-user-symbols\">".concat(abbr, "</div>\n                      </div>\n                      <div>\n                          <div class=\"reviews__name\">").concat(name, "</div>\n                          <div class=\"reviews__stars reviews__stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getRateClass)(rating), "\"></div>\n                      </div>\n                  </div>\n                  <div>\n                      <div class=\"reviews__city\">").concat(location, "</div>\n                      <div class=\"reviews__date\">").concat(getDate(date), "</div>\n                  </div>\n              </div>\n\n              <!-- content -->\n              <div class=\"reviews__content\">\n                <p class=\"reviews__text\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.subString)(content, 240), "</p>\n              </div>\n\n              <div class=\"reviews__footer\">\n\n                <!-- total reviews -->\n                <small>").concat(agentEmail, "</small>\n\n                <!-- link all reviews -->\n                <a href=\"").concat(link, "\" target=\"_blank\">\n                  <img\n                    src=\"").concat(_img_experience_logo_png__WEBPACK_IMPORTED_MODULE_0__, "\"\n                    loading=\"lazy\"\n                    alt=\"experience\"\n                    width=\"64px\"/>\n                </a>\n              </div>\n          </div>");
+  return "<div class=\"reviews__slide testimonials__item\">\n              <div class=\"reviews__header\">\n                  <div class=\"reviews__user-info\">\n                      <div class=\"reviews__user-img\">\n                          <div class=\"reviews__-user-symbols\">".concat(abbr, "</div>\n                      </div>\n                      <div>\n                          <div class=\"reviews__name\">").concat(name, "</div>\n                          <div class=\"reviews__rate\">\n                            <span class=\"reviews__stars reviews__stars--").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.getRateClass)(rating), "\"></span>\n                            <span class=\"reviews__rate-text\">").concat(rating.toFixed(1), "</span>\n                          </div>\n\n                      </div>\n                  </div>\n                  <div>\n                      <div class=\"reviews__city\">\n                        <span class=\"reviews__city-name\">").concat(city, "</span>\n                        <span class=\"reviews__city-state-name\">").concat(state, "</span>\n                      </div>\n                      <div class=\"reviews__date\">").concat(getDate(date), "</div>\n                  </div>\n              </div>\n\n              <!-- content -->\n              <div class=\"reviews__content\">\n                <p class=\"reviews__text\">").concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.subString)(content, 240), "</p>\n              </div>\n\n              <div class=\"reviews__footer\">\n\n                <!-- total reviews -->\n                <small>").concat(agentEmail, "</small>\n\n                <!-- link all reviews -->\n                <a href=\"").concat(link, "\" target=\"_blank\">\n                  <img\n                    src=\"").concat(_img_experience_logo_png__WEBPACK_IMPORTED_MODULE_0__, "\"\n                    loading=\"lazy\"\n                    alt=\"experience\"\n                    width=\"64px\"/>\n                </a>\n              </div>\n          </div>");
 };
 
 /***/ }),
@@ -26741,20 +26792,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_faqDropdowns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/faqDropdowns */ "./src/js/components/faqDropdowns.js");
 /* harmony import */ var _components_membersCards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/membersCards */ "./src/js/components/membersCards.js");
 /* harmony import */ var _components_membersCards__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_membersCards__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/overflowBodyForOpenMenu */ "./src/js/components/overflowBodyForOpenMenu.js");
-/* harmony import */ var _components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_awardsSlider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/awardsSlider */ "./src/js/components/awardsSlider.js");
-/* harmony import */ var _components_articlesSlider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/articlesSlider */ "./src/js/components/articlesSlider.js");
-/* harmony import */ var _components_Yelp__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Yelp */ "./src/js/components/Yelp/index.js");
-/* harmony import */ var _components_adwerx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/adwerx */ "./src/js/components/adwerx.js");
-/* harmony import */ var _components_adwerx__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_components_adwerx__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _components_Reviews__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Reviews */ "./src/js/components/Reviews/index.js");
-/* harmony import */ var _components_buysideWidget__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/buysideWidget */ "./src/js/components/buysideWidget.js");
-/* harmony import */ var _components_buysideWidget__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_buysideWidget__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _pages_testimonials__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/testimonials */ "./src/js/pages/testimonials/index.js");
+/* harmony import */ var _components_customSelect__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/customSelect */ "./src/js/components/customSelect.js");
+/* harmony import */ var _components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/overflowBodyForOpenMenu */ "./src/js/components/overflowBodyForOpenMenu.js");
+/* harmony import */ var _components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_components_overflowBodyForOpenMenu__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_awardsSlider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/awardsSlider */ "./src/js/components/awardsSlider.js");
+/* harmony import */ var _components_articlesSlider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/articlesSlider */ "./src/js/components/articlesSlider.js");
+/* harmony import */ var _components_Yelp__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Yelp */ "./src/js/components/Yelp/index.js");
+/* harmony import */ var _components_adwerx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/adwerx */ "./src/js/components/adwerx.js");
+/* harmony import */ var _components_adwerx__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_components_adwerx__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_Reviews__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Reviews */ "./src/js/components/Reviews/index.js");
+/* harmony import */ var _components_buysideWidget__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/buysideWidget */ "./src/js/components/buysideWidget.js");
+/* harmony import */ var _components_buysideWidget__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_components_buysideWidget__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _pages_testimonials__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/testimonials */ "./src/js/pages/testimonials/index.js");
  // plugins
 
  // components
+
 
 
 
