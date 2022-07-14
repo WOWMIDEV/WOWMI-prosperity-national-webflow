@@ -97,7 +97,7 @@ const elMouseEvents = (el, name, config) => {
 export const process = () => {
   const config = {
     color1: '#F8F8F8',
-    color2: '#001064',
+    color2: '#232323',
     color3: '#07becb',
     baseUrl: 'https://prosperity-national.webflow.io/state/',
     location: window.location,
