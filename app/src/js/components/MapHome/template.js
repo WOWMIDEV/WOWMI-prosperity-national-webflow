@@ -591,7 +591,7 @@ export const template = (params) => {
                 </a>
                 <!-- MASSACHUSETTS -->
                 <a class="link--circle" href="#" data-circle="circle" data-state='MASSACHUSETTS'>
-                    <line x1="854.143" y1="154.795" x2="874.143" y2="168.795" stroke="#BDBDBD" stroke-width="0.5"/>
+                    <line x1="854.143" y1="154.795" x2="870.143" y2="170.795" stroke="#BDBDBD" stroke-width="0.5"/>
                     <circle class='circle' cx="874" cy="188" r="17.5" fill="#F8F8F8" stroke="#54C4EA"
                         stroke-width="0.5" />
                     <path
