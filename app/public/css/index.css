@@ -1035,8 +1035,14 @@ span.current {
 }
 
 #buyside-widget-container {
-  width: 100%;
-  min-width: 100%;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
+}
+@media (max-width: 479px) {
+  #buyside-widget-container {
+    width: 100%;
+  }
 }
 #buyside-widget-container > div {
   display: -webkit-box;
@@ -1056,6 +1062,12 @@ span.current {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    background-color: transparent;
+  }
+}
+@media (max-width: 479px) {
+  #buyside-widget-container .buyside_widget_input_div {
+    padding-right: 0;
   }
 }
 
@@ -1203,6 +1215,34 @@ span.current {
   width: 100%;
   left: -3px;
   top: 100%;
+}
+
+@media (max-width: 479px) {
+  .report__search-home {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+.report__search-home .button__wrapper {
+  background-color: #222222;
+}
+.report__search-home .buyside__label {
+  padding-right: 30px;
+}
+@media (max-width: 479px) {
+  .report__search-home .buyside__label {
+    padding: 0;
+  }
+}
+.report__search-home .buyside_widget_autocomplete-items {
+  left: 110px;
+}
+@media (max-width: 479px) {
+  .report__search-home .buyside_widget_autocomplete-items {
+    left: 40px;
+  }
 }
 
 .map-home {

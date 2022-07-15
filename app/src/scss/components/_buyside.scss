@@ -1,6 +1,9 @@
 #buyside-widget-container {
-  width: 100%;
-  min-width: 100%;
+  flex: 100%;
+
+  @include media-mobile-x {
+    width: 100%;
+  }
 
   & > div {
     display: flex;
@@ -12,6 +15,13 @@
     @include media-mobile-x {
       padding: 20px;
       flex-direction: column;
+      background-color: transparent;
+    }
+  }
+
+  .buyside_widget_input_div {
+    @include media-mobile-x {
+      padding-right: 0;
     }
   }
 }
@@ -158,5 +168,31 @@
     width: 100%;
     left: -3px;
     top: 100%;
+  }
+}
+
+.report__search-home {
+  @include media-mobile-x {
+    flex-direction: column;
+  }
+
+  .button__wrapper {
+    background-color: $color13;
+  }
+
+  .buyside__label {
+    padding-right: 30px;
+
+    @include media-mobile-x {
+      padding: 0;
+    }
+  }
+
+  .buyside_widget_autocomplete-items {
+    left: 110px;
+
+    @include media-mobile-x {
+      left: 40px;
+    }
   }
 }
