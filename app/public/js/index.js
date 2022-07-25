@@ -329,10 +329,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var initReviews = function initReviews() {
+  var _elements$sectionRevi, _elements$sectionRevi2;
+
   var elements = {
     sectionReviews: document.querySelector('[data-reviews="section"]'),
     wrapperReviews: document.querySelector('[data-reviews="wrapper"]'),
     wrapperNav: document.querySelector('[data-reviews="nav"]'),
+    reviewsRandom: document.querySelector('[data-reviews-random="true"]'),
     links: {
       experience: document.querySelector('[data-reviews="experience-link"]')
     },
@@ -340,11 +343,13 @@ var initReviews = function initReviews() {
     agent_email: document.querySelector('[data-reviews="agent_email"]'),
     email: document.querySelector('[data-reviews="email"]')
   };
+  var isRandomReviews = (_elements$sectionRevi = (_elements$sectionRevi2 = elements.sectionReviews) === null || _elements$sectionRevi2 === void 0 ? void 0 : _elements$sectionRevi2.dataset.reviewsRandom) !== null && _elements$sectionRevi !== void 0 ? _elements$sectionRevi : false;
   var configRequest = {
-    base: 'https://review.wowmi.us/api/web/api/v1/reviews',
+    base: 'https://services.wowmi.us/api/web/api/v1/reviews',
     args: {
       rate_min: 4,
-      agent_email: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getContentElement)(elements.agent_email)
+      agent_email: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getContentElement)(elements.agent_email),
+      random: isRandomReviews
     }
   };
   var sectionReviews = elements.sectionReviews,
@@ -365,7 +370,8 @@ var initReviews = function initReviews() {
     }, configRequest.args),
     base: configRequest.base
   };
-  var experienceUrl = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.buildReviewsUrl)(experienceUrlConf); // URLS
+  var experienceUrl = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.buildReviewsUrl)(experienceUrlConf);
+  console.log('URL', experienceUrl); // URLS
 
   var urls = [experienceUrl].filter(function (url) {
     return url;

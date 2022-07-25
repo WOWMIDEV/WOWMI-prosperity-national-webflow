@@ -48,8 +48,6 @@ const initReviews = () => {
 
   const experienceUrl = buildReviewsUrl(experienceUrlConf);
 
-  console.log('URL', experienceUrl);
-
   // URLS
   const urls = [experienceUrl].filter((url) => url);
 
