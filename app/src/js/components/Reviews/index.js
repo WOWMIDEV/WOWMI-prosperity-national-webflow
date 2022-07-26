@@ -84,7 +84,18 @@ const initReviews = () => {
       }
 
       wrapperNav.insertAdjacentHTML('afterbegin', htmlTemplateNav());
-      renderReviews(elements, reviews);
+
+      const reviewsSortedByDate = reviews.sort((a, b) => {
+        if (a.date < b.date) {
+          return -1;
+        }
+        if (a.date > b.date) {
+          return 1;
+        }
+        return 0;
+      });
+
+      renderReviews(elements, reviewsSortedByDate);
 
       return true;
     })

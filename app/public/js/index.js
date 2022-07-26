@@ -370,8 +370,7 @@ var initReviews = function initReviews() {
     }, configRequest.args),
     base: configRequest.base
   };
-  var experienceUrl = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.buildReviewsUrl)(experienceUrlConf);
-  console.log('URL', experienceUrl); // URLS
+  var experienceUrl = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.buildReviewsUrl)(experienceUrlConf); // URLS
 
   var urls = [experienceUrl].filter(function (url) {
     return url;
@@ -407,7 +406,18 @@ var initReviews = function initReviews() {
     }
 
     wrapperNav.insertAdjacentHTML('afterbegin', (0,_htmlTemplateNav__WEBPACK_IMPORTED_MODULE_3__.htmlTemplateNav)());
-    (0,_render__WEBPACK_IMPORTED_MODULE_2__.renderReviews)(elements, reviews);
+    var reviewsSortedByDate = reviews.sort(function (a, b) {
+      if (a.date < b.date) {
+        return -1;
+      }
+
+      if (a.date > b.date) {
+        return 1;
+      }
+
+      return 0;
+    });
+    (0,_render__WEBPACK_IMPORTED_MODULE_2__.renderReviews)(elements, reviewsSortedByDate);
     return true;
   }).then(function (success) {
     if (success) (0,_reviewsSlider__WEBPACK_IMPORTED_MODULE_4__.reviewsSliderInit)();
@@ -1281,9 +1291,10 @@ var initReviews = function initReviews() {
     email: document.querySelector('[data-reviews="email"]')
   };
   var configRequest = {
-    base: 'https://review.wowmi.us/api/web/api/v1/reviews',
+    base: 'https://services.wowmi.us/api/web/api/v1/reviews',
     args: {
-      rate_min: 4
+      rate_min: 4,
+      random: true
     }
   };
   var wrapperReviews = elements.wrapperReviews;
@@ -1338,7 +1349,18 @@ var initReviews = function initReviews() {
       return false;
     }
 
-    (0,_renderReviews__WEBPACK_IMPORTED_MODULE_2__.renderReviews)(elements, reviews);
+    var reviewsSortedByDate = reviews.sort(function (a, b) {
+      if (a.date < b.date) {
+        return -1;
+      }
+
+      if (a.date > b.date) {
+        return 1;
+      }
+
+      return 0;
+    });
+    (0,_renderReviews__WEBPACK_IMPORTED_MODULE_2__.renderReviews)(elements, reviewsSortedByDate);
     return true;
   });
   return true;

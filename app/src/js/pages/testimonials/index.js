@@ -12,10 +12,12 @@ const initReviews = () => {
     company: document.querySelector('[data-reviews="company"]'),
     email: document.querySelector('[data-reviews="email"]'),
   };
+
   const configRequest = {
-    base: 'https://review.wowmi.us/api/web/api/v1/reviews',
+    base: 'https://services.wowmi.us/api/web/api/v1/reviews',
     args: {
       rate_min: 4,
+      random: true,
     },
   };
 
@@ -73,7 +75,17 @@ const initReviews = () => {
         return false;
       }
 
-      renderReviews(elements, reviews);
+      const reviewsSortedByDate = reviews.sort((a, b) => {
+        if (a.date < b.date) {
+          return -1;
+        }
+        if (a.date > b.date) {
+          return 1;
+        }
+        return 0;
+      });
+
+      renderReviews(elements, reviewsSortedByDate);
 
       return true;
     });
